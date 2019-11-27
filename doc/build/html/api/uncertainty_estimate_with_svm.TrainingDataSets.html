@@ -1,0 +1,495 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>TrainingDataSets &mdash; Uncertainty Estimate with SVM 0.0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Uncertainty Estimate with SVM 0.0.1 documentation" href="../index.html"/>
+        <link rel="prev" title="scatter_plot_with_groups" href="uncertainty_estimate_with_svm.scatter_plot_with_groups.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Uncertainty Estimate with SVM
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="uncertainty_estimate_with_svm.compute_predictive_entropy.html">compute_predictive_entropy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uncertainty_estimate_with_svm.generate_ensemble.html">generate_ensemble</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uncertainty_estimate_with_svm.generate_predictions.html">generate_predictions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uncertainty_estimate_with_svm.get_all_files_within_folder.html">get_all_files_within_folder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uncertainty_estimate_with_svm.get_all_sub_folders_within_folder.html">get_all_sub_folders_within_folder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uncertainty_estimate_with_svm.get_data.html">get_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uncertainty_estimate_with_svm.make_confusion_matrix.html">make_confusion_matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uncertainty_estimate_with_svm.plot_comparison.html">plot_comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uncertainty_estimate_with_svm.plot_confusion_matrix.html">plot_confusion_matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uncertainty_estimate_with_svm.plot_individual_classes.html">plot_individual_classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uncertainty_estimate_with_svm.plot_solution.html">plot_solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uncertainty_estimate_with_svm.reduce_set_to_equal_distribution_of_classes.html">reduce_set_to_equal_distribution_of_classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uncertainty_estimate_with_svm.scatter_plot_with_groups.html">scatter_plot_with_groups</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">TrainingDataSets</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Uncertainty Estimate with SVM</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>TrainingDataSets</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/uncertainty_estimate_with_svm.TrainingDataSets.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="trainingdatasets">
+<h1>TrainingDataSets<a class="headerlink" href="#trainingdatasets" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="uncertainty_estimate_with_svm.TrainingDataSets">
+<em class="property">class </em><code class="sig-prename descclassname">uncertainty_estimate_with_svm.</code><code class="sig-name descname">TrainingDataSets</code><span class="sig-paren">(</span><em class="sig-param">features_and_targets_data_set</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/uncertainty_estimate_with_svm.html#TrainingDataSets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#uncertainty_estimate_with_svm.TrainingDataSets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class for generating training, validation, and testing data sets.</p>
+<dl class="attribute">
+<dt id="uncertainty_estimate_with_svm.TrainingDataSets.original_data">
+<code class="sig-name descname">original_data</code><a class="headerlink" href="#uncertainty_estimate_with_svm.TrainingDataSets.original_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Original features and targets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="uncertainty_estimate_with_svm.TrainingDataSets.indices_of_features">
+<code class="sig-name descname">indices_of_features</code><a class="headerlink" href="#uncertainty_estimate_with_svm.TrainingDataSets.indices_of_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Numeric indication of position of features in <cite>original_data</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="uncertainty_estimate_with_svm.TrainingDataSets.indices_of_targets">
+<code class="sig-name descname">indices_of_targets</code><a class="headerlink" href="#uncertainty_estimate_with_svm.TrainingDataSets.indices_of_targets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Numeric indication of position of targets in <cite>original_data</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="uncertainty_estimate_with_svm.TrainingDataSets.train_features">
+<code class="sig-name descname">train_features</code><a class="headerlink" href="#uncertainty_estimate_with_svm.TrainingDataSets.train_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unscaled training features.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>np.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="uncertainty_estimate_with_svm.TrainingDataSets.train_targets">
+<code class="sig-name descname">train_targets</code><a class="headerlink" href="#uncertainty_estimate_with_svm.TrainingDataSets.train_targets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Training targets. Shuffled if desired.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>np.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="uncertainty_estimate_with_svm.TrainingDataSets.validation_features">
+<code class="sig-name descname">validation_features</code><a class="headerlink" href="#uncertainty_estimate_with_svm.TrainingDataSets.validation_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validation features</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>np.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="uncertainty_estimate_with_svm.TrainingDataSets.validation_targets">
+<code class="sig-name descname">validation_targets</code><a class="headerlink" href="#uncertainty_estimate_with_svm.TrainingDataSets.validation_targets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validation Targets</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>np.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="uncertainty_estimate_with_svm.TrainingDataSets.test_features">
+<code class="sig-name descname">test_features</code><a class="headerlink" href="#uncertainty_estimate_with_svm.TrainingDataSets.test_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Testing features</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>np.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="uncertainty_estimate_with_svm.TrainingDataSets.test_targets">
+<code class="sig-name descname">test_targets</code><a class="headerlink" href="#uncertainty_estimate_with_svm.TrainingDataSets.test_targets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Testing targets</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>np.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="uncertainty_estimate_with_svm.TrainingDataSets.scaled_train_features">
+<code class="sig-name descname">scaled_train_features</code><a class="headerlink" href="#uncertainty_estimate_with_svm.TrainingDataSets.scaled_train_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train features scaled to mean zero and unit variance. Shuffled
+if desired.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>np.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="uncertainty_estimate_with_svm.TrainingDataSets.scaled_validation_features">
+<code class="sig-name descname">scaled_validation_features</code><a class="headerlink" href="#uncertainty_estimate_with_svm.TrainingDataSets.scaled_validation_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validation features scaled to mean zero and unit variance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Numpy Array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="uncertainty_estimate_with_svm.TrainingDataSets.scaled_test_features">
+<code class="sig-name descname">scaled_test_features</code><a class="headerlink" href="#uncertainty_estimate_with_svm.TrainingDataSets.scaled_test_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test features scaled to mean zero and unit variance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Numpy Array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#uncertainty_estimate_with_svm.TrainingDataSets.compute_mean_and_standard_deviation" title="uncertainty_estimate_with_svm.TrainingDataSets.compute_mean_and_standard_deviation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_mean_and_standard_deviation</span></code></a>()</p></td>
+<td><p>Computation of mean and standard deviation of features in the training data set.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#uncertainty_estimate_with_svm.TrainingDataSets.get_scaled_features" title="uncertainty_estimate_with_svm.TrainingDataSets.get_scaled_features"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_scaled_features</span></code></a>()</p></td>
+<td><p>Convenience method to return scaled features.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#uncertainty_estimate_with_svm.TrainingDataSets.get_targets" title="uncertainty_estimate_with_svm.TrainingDataSets.get_targets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_targets</span></code></a>()</p></td>
+<td><p>Convenience method to return targets features.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#uncertainty_estimate_with_svm.TrainingDataSets.make_training_data" title="uncertainty_estimate_with_svm.TrainingDataSets.make_training_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_training_data</span></code></a>(train_size, validation_size)</p></td>
+<td><p>Make features and targets</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#uncertainty_estimate_with_svm.TrainingDataSets.scale_features" title="uncertainty_estimate_with_svm.TrainingDataSets.scale_features"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale_features</span></code></a>()</p></td>
+<td><p>Standardize features in such manner that their mean is centered to zero, and unit of measurement is set to variance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#uncertainty_estimate_with_svm.TrainingDataSets.shuffle" title="uncertainty_estimate_with_svm.TrainingDataSets.shuffle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shuffle</span></code></a>()</p></td>
+<td><p>Shuffle the scaled training features and targets.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Documentation</p>
+<dl class="method">
+<dt id="uncertainty_estimate_with_svm.TrainingDataSets.compute_mean_and_standard_deviation">
+<code class="sig-name descname">compute_mean_and_standard_deviation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/uncertainty_estimate_with_svm.html#TrainingDataSets.compute_mean_and_standard_deviation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#uncertainty_estimate_with_svm.TrainingDataSets.compute_mean_and_standard_deviation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computation of mean and standard deviation of features
+in the training data set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>No explicit return.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Values are stored in the 'features_mean' and
+'features_standard_deviation' attribute of the class.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="uncertainty_estimate_with_svm.TrainingDataSets.get_scaled_features">
+<code class="sig-name descname">get_scaled_features</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/uncertainty_estimate_with_svm.html#TrainingDataSets.get_scaled_features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#uncertainty_estimate_with_svm.TrainingDataSets.get_scaled_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience method to return scaled features.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>scaled_train_features</strong> (<em>np.array</em>) -- Scaled features for training.</p></li>
+<li><p><strong>scaled_validation_features</strong> (<em>np.array</em>) -- Scaled features for validation.</p></li>
+<li><p><strong>scaled_test_features</strong> (<em>np.array</em>) -- Scaled features for testing.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="uncertainty_estimate_with_svm.TrainingDataSets.get_targets">
+<code class="sig-name descname">get_targets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/uncertainty_estimate_with_svm.html#TrainingDataSets.get_targets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#uncertainty_estimate_with_svm.TrainingDataSets.get_targets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience method to return targets features.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>train_targets</strong> (<em>np.array</em>) -- Targets for training.</p></li>
+<li><p><strong>validation_targets</strong> (<em>np.array</em>) -- Targets for validation.</p></li>
+<li><p><strong>test_targets</strong> (<em>np.array</em>) -- Targets for testing.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="uncertainty_estimate_with_svm.TrainingDataSets.make_training_data">
+<code class="sig-name descname">make_training_data</code><span class="sig-paren">(</span><em class="sig-param">train_size</em>, <em class="sig-param">validation_size</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/uncertainty_estimate_with_svm.html#TrainingDataSets.make_training_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#uncertainty_estimate_with_svm.TrainingDataSets.make_training_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make features and targets</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>train_size</strong> (<em>int</em>) -- Proportion of the training set.</p></li>
+<li><p><strong>validation_size</strong> (<em>int</em>) -- Proportion of the validation set.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Size of the testing set is determined implicitly.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="uncertainty_estimate_with_svm.TrainingDataSets.scale_features">
+<code class="sig-name descname">scale_features</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/uncertainty_estimate_with_svm.html#TrainingDataSets.scale_features"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#uncertainty_estimate_with_svm.TrainingDataSets.scale_features" title="Permalink to this definition">¶</a></dt>
+<dd><p>Standardize features in such manner that their mean is centered
+to zero, and unit of measurement is set to variance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Standardized features are placed inside appropriate
+attributes of the class.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Numpy Array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="uncertainty_estimate_with_svm.TrainingDataSets.shuffle">
+<code class="sig-name descname">shuffle</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/uncertainty_estimate_with_svm.html#TrainingDataSets.shuffle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#uncertainty_estimate_with_svm.TrainingDataSets.shuffle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shuffle the scaled training features and targets.</p>
+<p>Only scaled training features and targets are shuffled. Validation,
+and test data sets are not shuffled.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="uncertainty_estimate_with_svm.scatter_plot_with_groups.html" class="btn btn-neutral" title="scatter_plot_with_groups" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Marko Djordjic.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> and ❤️  using a custom <a href="https://github.com/LinxiFan/Stanford-theme">theme</a> based on <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
