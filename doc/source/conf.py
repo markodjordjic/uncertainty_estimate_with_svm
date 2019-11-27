@@ -43,7 +43,6 @@ extensions = [
     'sphinx.ext.githubpages',
     'sphinx.ext.viewcode',
     'sphinx_automodapi.automodapi',
-	'rst2pdf.pdfbuilder'
 ]
 
 

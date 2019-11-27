@@ -11,7 +11,7 @@ Welcome to Classification's documentation!
    :caption: Contents:
 
 
-.. automodapi:: uncertainty_estimate_with_svm
+.. automodapi:: ucf
    :members:
    :inherited-members:
    :private-members:
