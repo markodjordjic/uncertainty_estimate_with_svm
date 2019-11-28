@@ -1,9 +1,9 @@
 data
 output
-doc\source
-doc\build\doctrees
+doc/source
+doc/build/doctrees
 make.bat
 Makefile
-source\build
+source/build
 .egg-info
 .idea
