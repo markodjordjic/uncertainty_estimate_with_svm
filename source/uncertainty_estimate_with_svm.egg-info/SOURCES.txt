@@ -1,7 +1,0 @@
-setup.py
-uncertainty_estimate_with_svm/__init__.py
-uncertainty_estimate_with_svm/ucf.py
-uncertainty_estimate_with_svm.egg-info/PKG-INFO
-uncertainty_estimate_with_svm.egg-info/SOURCES.txt
-uncertainty_estimate_with_svm.egg-info/dependency_links.txt
-uncertainty_estimate_with_svm.egg-info/top_level.txt
