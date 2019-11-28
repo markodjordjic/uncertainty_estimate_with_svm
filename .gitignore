@@ -4,4 +4,6 @@ doc\source
 doc\build\doctrees
 make.bat
 Makefile
+source\build
+.egg-info
 .idea
