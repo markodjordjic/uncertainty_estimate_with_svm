@@ -136,7 +136,7 @@ Generate predictions from ensemble
 \hline
 {\hyperref[\detokenize{api/ucf.get_all_files_within_folder:ucf.get_all_files_within_folder}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{get\_all\_files\_within\_folder}}}}}(path, ...)
 &
-Catalogue all files within a folder which naming conforms to negative condition
+Catalogue all files within a folder according to negative condition
 \\
 \hline
 {\hyperref[\detokenize{api/ucf.get_all_sub_folders_within_folder:ucf.get_all_sub_folders_within_folder}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{get\_all\_sub\_folders\_within\_folder}}}}}(path)
@@ -181,7 +181,7 @@ Reduces the training set to the size N = K x size of the least frequent class
 \hline
 {\hyperref[\detokenize{api/ucf.scatter_plot_with_groups:ucf.scatter_plot_with_groups}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{scatter\_plot\_with\_groups}}}}}(coordinates, ...{[}, ...{]})
 &
-Plot scatter plot with coloration according to the labels
+Produce scatter plot with coloration according to the labels
 \\
 \hline
 \end{longtable}\sphinxatlongtableend\end{savenotes}
@@ -200,14 +200,14 @@ Further details about about predictive entropy available at:
 \end{footnote}
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode
-\sphinxstyleliteralstrong{\sphinxupquote{probability}} (\sphinxstyleliteralemphasis{\sphinxupquote{np.array}}) -- A np.array (N x C) with the probabilities obtained from the
+\sphinxstyleliteralstrong{\sphinxupquote{probability}} (\sphinxstyleliteralemphasis{\sphinxupquote{numpy.array}}) -- A numpy.array (N x C) with the probabilities obtained from the
 underlying classier (soft voting).
 
 \item[{Returns}] \leavevmode
 Uncertainty estimate for each prediction.
 
 \item[{Return type}] \leavevmode
-np.array
+numpy.array
 
 \end{description}\end{quote}
 \subsubsection*{Notes}
@@ -237,11 +237,11 @@ other classifier.
 \sphinxstyleliteralstrong{\sphinxupquote{number\_of\_estimators}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) -- How much estimators will be in the ensemble.
 
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{features\_for\_training}} (\sphinxstyleliteralemphasis{\sphinxupquote{np.array}}) -- Features which will be utilized for training of individual
+\sphinxstyleliteralstrong{\sphinxupquote{features\_for\_training}} (\sphinxstyleliteralemphasis{\sphinxupquote{numpy.array}}) -- Features which will be utilized for training of individual
 estimators.
 
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{targets\_for\_training}} (\sphinxstyleliteralemphasis{\sphinxupquote{np.array}}) -- Targets which will be utilized for training of individual
+\sphinxstyleliteralstrong{\sphinxupquote{targets\_for\_training}} (\sphinxstyleliteralemphasis{\sphinxupquote{numpy.array}}) -- Targets which will be utilized for training of individual
 estimators.
 
 \end{itemize}
@@ -256,8 +256,8 @@ List
 \end{description}\end{quote}
 \subsubsection*{Notes}
 
-The function does not shuffle the data. If shuffling is
-necessary, it has to be done before call to the function.
+The function does not shuffle the data. If shuffling is necessary,
+it has to be done before call to the function.
 
 \end{fulllineitems}
 
@@ -271,9 +271,8 @@ necessary, it has to be done before call to the function.
 Generate predictions from ensemble
 
 The function applies 'predict\_proba' method to a collection
-of estimators, in order to get predictions and computes uncertainty
-estimate via predictive entropy. Along side output, an
-uncertainty estimate is returned as well.
+of estimators, in order to get predictions and compute uncertainty
+estimate via predictive entropy.
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
 \item {} 
@@ -287,10 +286,10 @@ uncertainty estimate is returned as well.
 \item[{Returns}] \leavevmode
 \begin{itemize}
 \item {} 
-\sphinxstylestrong{ensemble\_predictions} (\sphinxstyleemphasis{np.array}) -- Prediction of class membership.
+\sphinxstylestrong{ensemble\_predictions} (\sphinxstyleemphasis{numpy.array}) -- Prediction of class membership.
 
 \item {} 
-\sphinxstylestrong{uncertainty\_estimate} (\sphinxstyleemphasis{np.array}) -- Uncertainty estimate.
+\sphinxstylestrong{uncertainty\_estimate} (\sphinxstyleemphasis{numpy.array}) -- Uncertainty estimate.
 
 \end{itemize}
 
@@ -306,15 +305,14 @@ uncertainty estimate is returned as well.
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{api/ucf.get_all_files_within_folder:ucf.get_all_files_within_folder}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{ucf.}}\sphinxbfcode{\sphinxupquote{get\_all\_files\_within\_folder}}}{\emph{path}, \emph{negative\_condition}}{}
-Catalogue all files within a folder which naming conforms to negative
-condition
+Catalogue all files within a folder according to negative condition
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{path}} (\sphinxstyleliteralemphasis{\sphinxupquote{string}}) -- Path to the folder.
+\sphinxstyleliteralstrong{\sphinxupquote{path}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) -- Path to the folder.
 
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{negative\_condition}} (\sphinxstyleliteralemphasis{\sphinxupquote{sting}}) -- Exact textual content in the name of the files, which is
+\sphinxstyleliteralstrong{\sphinxupquote{negative\_condition}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) -- Exact text contained with the name of the files, which is
 utilized to identify files which will not be catalogued.
 
 \end{itemize}
@@ -340,7 +338,7 @@ list
 Catalogue names of all sub-folders within folder
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode
-\sphinxstyleliteralstrong{\sphinxupquote{path}} (\sphinxstyleliteralemphasis{\sphinxupquote{string}}) -- Path to the main folder.
+\sphinxstyleliteralstrong{\sphinxupquote{path}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) -- Path to the main folder.
 
 \item[{Returns}] \leavevmode
 Names of all sub-folder within folder designated in \sphinxtitleref{path} parameter.
@@ -365,10 +363,10 @@ folder.
 Function omits files which are having \sphinxtitleref{txt} inside their name.
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode
-\sphinxstyleliteralstrong{\sphinxupquote{folder\_wh\_data}} (\sphinxstyleliteralemphasis{\sphinxupquote{string}}) -- Folder in which data files are residing.
+\sphinxstyleliteralstrong{\sphinxupquote{folder\_wh\_data}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) -- Folder in which data files are residing.
 
 \item[{Returns}] \leavevmode
-A list with all the data sets generated from individual data
+All the data sets generated from individual data
 files.
 
 \item[{Return type}] \leavevmode
@@ -389,10 +387,10 @@ Compute confusion matrix
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{reference}} (\sphinxstyleliteralemphasis{\sphinxupquote{np.array}}) -- A vector with reference.
+\sphinxstyleliteralstrong{\sphinxupquote{reference}} (\sphinxstyleliteralemphasis{\sphinxupquote{numpy.array}}) -- A vector with reference.
 
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{output}} (\sphinxstyleliteralemphasis{\sphinxupquote{np.array}}) -- A vector with targets.
+\sphinxstyleliteralstrong{\sphinxupquote{output}} (\sphinxstyleliteralemphasis{\sphinxupquote{numpy.array}}) -- A vector with targets.
 
 \item {} 
 \sphinxstyleliteralstrong{\sphinxupquote{prediction\_labels}} (\sphinxstyleliteralemphasis{\sphinxupquote{list}}) -- Descriptions of labels.
@@ -403,13 +401,13 @@ Compute confusion matrix
 
 
 \item[{Return type}] \leavevmode
-Confusion matrix as the pd.DataFrame.
+Confusion matrix as the pandas.DataFrame.
 
 \end{description}\end{quote}
 \subsubsection*{Notes}
 
 Reference group is placed in row. Proportion of each prediction
-within the reference group is computed across columns (horisontaly).
+within the reference group is computed across columns (horizontally).
 
 \end{fulllineitems}
 
@@ -424,10 +422,10 @@ Plot comparison across different classification solutions.
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{coordinates}} (\sphinxstyleliteralemphasis{\sphinxupquote{np.array}}) -- Coordinates of the points.
+\sphinxstyleliteralstrong{\sphinxupquote{coordinates}} (\sphinxstyleliteralemphasis{\sphinxupquote{numpy.array}}) -- Coordinates of the points.
 
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{reference}} (\sphinxstyleliteralemphasis{\sphinxupquote{np.array}}) -- Labels of the reference.
+\sphinxstyleliteralstrong{\sphinxupquote{reference}} (\sphinxstyleliteralemphasis{\sphinxupquote{numpy.array}}) -- Labels of the reference.
 
 \item {} 
 \sphinxstyleliteralstrong{\sphinxupquote{solutions}} (\sphinxstyleliteralemphasis{\sphinxupquote{list}}) -- List containing solutions of classification problem.
@@ -441,7 +439,8 @@ Plot comparison across different classification solutions.
 \end{itemize}
 
 \item[{Returns}] \leavevmode
-No explicit return. Plots are displayed.
+No explicit return. Plot is displayed on the screen, or saved
+into a file.
 
 \item[{Return type}] \leavevmode
 None
@@ -464,13 +463,13 @@ picture of confusion matrix can be saved.
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{content}} (\sphinxstyleliteralemphasis{\sphinxupquote{np.array}}) -- Numpy array with the complete content of the confusion matrix.
+\sphinxstyleliteralstrong{\sphinxupquote{content}} (\sphinxstyleliteralemphasis{\sphinxupquote{numpy.array}}) -- Numpy array with the complete content of the confusion matrix.
 
 \item {} 
 \sphinxstyleliteralstrong{\sphinxupquote{save\_plot}} (\sphinxstyleliteralemphasis{\sphinxupquote{bool}}) -- Indication whether to save the plot. Default set to false.
 
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{path}} (\sphinxstyleliteralemphasis{\sphinxupquote{basestring}}) -- Path including the file name where to save the plot.
+\sphinxstyleliteralstrong{\sphinxupquote{path}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) -- Path including the file name where to save the plot.
 
 \end{itemize}
 
@@ -503,10 +502,10 @@ function plots all classes independently.
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{coordinates}} (\sphinxstyleliteralemphasis{\sphinxupquote{np.array}}) -- Coordinates of points.
+\sphinxstyleliteralstrong{\sphinxupquote{coordinates}} (\sphinxstyleliteralemphasis{\sphinxupquote{numpy.array}}) -- Coordinates of points.
 
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{class\_membership}} (\sphinxstyleliteralemphasis{\sphinxupquote{np.array}}) -- Indication of class membership.
+\sphinxstyleliteralstrong{\sphinxupquote{class\_membership}} (\sphinxstyleliteralemphasis{\sphinxupquote{numpy.array}}) -- Indication of class membership.
 
 \item {} 
 \sphinxstyleliteralstrong{\sphinxupquote{description}} (\sphinxstyleliteralemphasis{\sphinxupquote{dict}}) -- Description of each label.
@@ -515,7 +514,7 @@ function plots all classes independently.
 \sphinxstyleliteralstrong{\sphinxupquote{coloration\_mode}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) -- Indication of the mode of coloration.
 
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{coloration}} (\sphinxstyleliteralemphasis{\sphinxupquote{np.array}}) -- Vector with coloration.
+\sphinxstyleliteralstrong{\sphinxupquote{coloration}} (\sphinxstyleliteralemphasis{\sphinxupquote{numpy.array}}) -- Vector with coloration.
 
 \item {} 
 \sphinxstyleliteralstrong{\sphinxupquote{save}} (\sphinxstyleliteralemphasis{\sphinxupquote{bool}}) -- Option to save the plot.
@@ -549,14 +548,14 @@ labels, and (c) uncertainty estimate of the model.
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{coordinates}} (\sphinxstyleliteralemphasis{\sphinxupquote{np.array}}) -- Coordinates of labels
+\sphinxstyleliteralstrong{\sphinxupquote{coordinates}} (\sphinxstyleliteralemphasis{\sphinxupquote{numpy.array}}) -- Coordinates of labels
 
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{original\_labels}} (\sphinxstyleliteralemphasis{\sphinxupquote{np.array}}) -- Reference one-dimensional encoding of the class membership.
+\sphinxstyleliteralstrong{\sphinxupquote{original\_labels}} (\sphinxstyleliteralemphasis{\sphinxupquote{numpy.array}}) -- Reference one-dimensional encoding of the class membership.
 One-hot encoding is not supported.
 
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{predicted\_labels}} (\sphinxstyleliteralemphasis{\sphinxupquote{np.array}}) -- Predicted one-dimensional encoding of the class membership.
+\sphinxstyleliteralstrong{\sphinxupquote{predicted\_labels}} (\sphinxstyleliteralemphasis{\sphinxupquote{numpy.array}}) -- Predicted one-dimensional encoding of the class membership.
 One-hot encoding is not supported.
 
 \item {} 
@@ -566,13 +565,13 @@ One-hot encoding is not supported.
 \sphinxstyleliteralstrong{\sphinxupquote{legend\_descriptions}} (\sphinxstyleliteralemphasis{\sphinxupquote{dict}}) -- Labels to be utilized for description in plot legend.
 
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{uncertainty}} (\sphinxstyleliteralemphasis{\sphinxupquote{np.array}}) -- Uncertainty of the models estimate of class membership.
+\sphinxstyleliteralstrong{\sphinxupquote{uncertainty}} (\sphinxstyleliteralemphasis{\sphinxupquote{numpy.array}}) -- Uncertainty of the models estimate of class membership.
 
 \item {} 
 \sphinxstyleliteralstrong{\sphinxupquote{save}} (\sphinxstyleliteralemphasis{\sphinxupquote{bool}}) -- Option to save the plot. Default set to false.
 
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{path}} (\sphinxstyleliteralemphasis{\sphinxupquote{basestring}}) -- Absolute path to the file in which to save a plot.
+\sphinxstyleliteralstrong{\sphinxupquote{path}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) -- Absolute path to the file in which to save a plot.
 
 \end{itemize}
 
@@ -604,19 +603,19 @@ distribution of classes.
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{features\_for\_training}} (\sphinxstyleliteralemphasis{\sphinxupquote{np.array}}) -- Features which will be used for generating reduced sets.
+\sphinxstyleliteralstrong{\sphinxupquote{features\_for\_training}} (\sphinxstyleliteralemphasis{\sphinxupquote{numpy.array}}) -- Features which will be used for generating reduced sets.
 
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{targets\_for\_training}} (\sphinxstyleliteralemphasis{\sphinxupquote{np.array}}) -- Targets which will be used for generating reduced sets.
+\sphinxstyleliteralstrong{\sphinxupquote{targets\_for\_training}} (\sphinxstyleliteralemphasis{\sphinxupquote{numpy.array}}) -- Targets which will be used for generating reduced sets.
 
 \end{itemize}
 
 \item[{Returns}] \leavevmode
-Two separate np.arrays Features and targets reduced to the size of
+Two separate numpy.arrays Features and targets reduced to the size of
 equal to the number of samples belonging to the leas frequent class.
 
 \item[{Return type}] \leavevmode
-np.array
+numpy.array
 
 \end{description}\end{quote}
 
@@ -629,14 +628,14 @@ np.array
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{api/ucf.scatter_plot_with_groups:ucf.scatter_plot_with_groups}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{ucf.}}\sphinxbfcode{\sphinxupquote{scatter\_plot\_with\_groups}}}{\emph{coordinates}, \emph{labels}, \emph{legend\_colors}, \emph{legend\_descriptions}, \emph{save\_plot=False}, \emph{path=None}}{}
-Plot scatter plot with coloration according to the labels
+Produce scatter plot with coloration according to the labels
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{coordinates}} (\sphinxstyleliteralemphasis{\sphinxupquote{np.array}}) -- Coordinates of points.
+\sphinxstyleliteralstrong{\sphinxupquote{coordinates}} (\sphinxstyleliteralemphasis{\sphinxupquote{numpy.array}}) -- Coordinates of points.
 
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{labels}} (\sphinxstyleliteralemphasis{\sphinxupquote{np.array}}) -- Vector indicating class membership of each point.
+\sphinxstyleliteralstrong{\sphinxupquote{labels}} (\sphinxstyleliteralemphasis{\sphinxupquote{numpy.array}}) -- Vector indicating class membership of each point.
 
 \item {} 
 \sphinxstyleliteralstrong{\sphinxupquote{legend\_colors}} (\sphinxstyleliteralemphasis{\sphinxupquote{dict}}) -- Colors to be utilized for coloration of points.
@@ -648,7 +647,7 @@ Plot scatter plot with coloration according to the labels
 \sphinxstyleliteralstrong{\sphinxupquote{save\_plot}} (\sphinxstyleliteralemphasis{\sphinxupquote{bool}}) -- Indication whether to save a plot. Defaults to none
 
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{path}} (\sphinxstyleliteralemphasis{\sphinxupquote{basestring}}) -- Path including the file name where to save the plot.
+\sphinxstyleliteralstrong{\sphinxupquote{path}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) -- Path including the file name where to save the plot.
 
 \end{itemize}
 
@@ -722,7 +721,7 @@ Class for generating training, validation, and testing data sets.
 Original features and targets.
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
-pd.DataFrame
+pandas.DataFrame
 
 \end{description}\end{quote}
 
@@ -761,7 +760,7 @@ list
 Unscaled training features.
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
-np.array
+numpy.array
 
 \end{description}\end{quote}
 
@@ -774,7 +773,7 @@ np.array
 Training targets. Shuffled if desired.
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
-np.array
+numpy.array
 
 \end{description}\end{quote}
 
@@ -787,7 +786,7 @@ np.array
 Validation features
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
-np.array
+numpy.array
 
 \end{description}\end{quote}
 
@@ -800,7 +799,7 @@ np.array
 Validation Targets
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
-np.array
+numpy.array
 
 \end{description}\end{quote}
 
@@ -813,7 +812,7 @@ np.array
 Testing features
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
-np.array
+numpy.array
 
 \end{description}\end{quote}
 
@@ -826,7 +825,7 @@ np.array
 Testing targets
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
-np.array
+numpy.array
 
 \end{description}\end{quote}
 
@@ -840,7 +839,7 @@ Train features scaled to mean zero and unit variance. Shuffled
 if desired.
 \begin{quote}\begin{description}
 \item[{Type}] \leavevmode
-np.array
+numpy.array
 
 \end{description}\end{quote}
 
@@ -904,7 +903,7 @@ Convenience method to return scaled features.
 \hline
 {\hyperref[\detokenize{api/ucf.TrainingDataSets:ucf.TrainingDataSets.get_targets}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{get\_targets}}}}}()
 &
-Convenience method to return targets features.
+Convenience method to return targets and features
 \\
 \hline
 {\hyperref[\detokenize{api/ucf.TrainingDataSets:ucf.TrainingDataSets.make_training_data}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{make\_training\_data}}}}}(train\_size, validation\_size)
@@ -919,7 +918,7 @@ Standardize features in such manner that their mean is centered to zero, and uni
 \hline
 {\hyperref[\detokenize{api/ucf.TrainingDataSets:ucf.TrainingDataSets.shuffle}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{shuffle}}}}}()
 &
-Shuffle the scaled training features and targets.
+Shuffle scaled features and unscaled targets for training
 \\
 \hline
 \end{longtable}\sphinxatlongtableend\end{savenotes}
@@ -954,13 +953,13 @@ Convenience method to return scaled features.
 \item[{Returns}] \leavevmode
 \begin{itemize}
 \item {} 
-\sphinxstylestrong{scaled\_train\_features} (\sphinxstyleemphasis{np.array}) -- Scaled features for training.
+\sphinxstylestrong{scaled\_train\_features} (\sphinxstyleemphasis{numpy.array}) -- Scaled features for training.
 
 \item {} 
-\sphinxstylestrong{scaled\_validation\_features} (\sphinxstyleemphasis{np.array}) -- Scaled features for validation.
+\sphinxstylestrong{scaled\_validation\_features} (\sphinxstyleemphasis{numpy.array}) -- Scaled features for validation.
 
 \item {} 
-\sphinxstylestrong{scaled\_test\_features} (\sphinxstyleemphasis{np.array}) -- Scaled features for testing.
+\sphinxstylestrong{scaled\_test\_features} (\sphinxstyleemphasis{numpy.array}) -- Scaled features for testing.
 
 \end{itemize}
 
@@ -973,18 +972,18 @@ Convenience method to return scaled features.
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{api/ucf.TrainingDataSets:ucf.TrainingDataSets.get_targets}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{get\_targets}}}{}{}
-Convenience method to return targets features.
+Convenience method to return targets and features
 \begin{quote}\begin{description}
 \item[{Returns}] \leavevmode
 \begin{itemize}
 \item {} 
-\sphinxstylestrong{train\_targets} (\sphinxstyleemphasis{np.array}) -- Targets for training.
+\sphinxstylestrong{train\_targets} (\sphinxstyleemphasis{numpy.array}) -- Targets for training.
 
 \item {} 
-\sphinxstylestrong{validation\_targets} (\sphinxstyleemphasis{np.array}) -- Targets for validation.
+\sphinxstylestrong{validation\_targets} (\sphinxstyleemphasis{numpy.array}) -- Targets for validation.
 
 \item {} 
-\sphinxstylestrong{test\_targets} (\sphinxstyleemphasis{np.array}) -- Targets for testing.
+\sphinxstylestrong{test\_targets} (\sphinxstyleemphasis{numpy.array}) -- Targets for testing.
 
 \end{itemize}
 
@@ -1027,7 +1026,7 @@ Standardized features are placed inside appropriate
 attributes of the class.
 
 \item[{Return type}] \leavevmode
-Numpy Array
+numpy.array
 
 \end{description}\end{quote}
 
@@ -1037,7 +1036,8 @@ Numpy Array
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{api/ucf.TrainingDataSets:ucf.TrainingDataSets.shuffle}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{shuffle}}}{}{}
-Shuffle the scaled training features and targets.
+Shuffle scaled features and unscaled targets for training
+\subsubsection*{Notes}
 
 Only scaled training features and targets are shuffled. Validation,
 and test data sets are not shuffled.

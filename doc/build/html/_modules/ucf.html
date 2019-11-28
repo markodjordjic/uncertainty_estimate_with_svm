@@ -176,15 +176,14 @@
 
 <div class="viewcode-block" id="get_all_files_within_folder"><a class="viewcode-back" href="../api/ucf.get_all_files_within_folder.html#ucf.get_all_files_within_folder">[docs]</a><span class="k">def</span> <span class="nf">get_all_files_within_folder</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">negative_condition</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Catalogue all files within a folder which naming conforms to negative</span>
-<span class="sd">    condition</span>
+<span class="sd">    Catalogue all files within a folder according to negative condition</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    path : string</span>
+<span class="sd">    path : str</span>
 <span class="sd">        Path to the folder.</span>
-<span class="sd">    negative_condition : sting</span>
-<span class="sd">        Exact textual content in the name of the files, which is</span>
+<span class="sd">    negative_condition : str</span>
+<span class="sd">        Exact text contained with the name of the files, which is</span>
 <span class="sd">        utilized to identify files which will not be catalogued.</span>
 
 <span class="sd">    Returns</span>
@@ -207,7 +206,7 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    path : string</span>
+<span class="sd">    path : str</span>
 <span class="sd">        Path to the main folder.</span>
 
 <span class="sd">    Returns</span>
@@ -231,13 +230,13 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    folder_wh_data : string</span>
+<span class="sd">    folder_wh_data : str</span>
 <span class="sd">        Folder in which data files are residing.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    list</span>
-<span class="sd">        A list with all the data sets generated from individual data</span>
+<span class="sd">        All the data sets generated from individual data</span>
 <span class="sd">        files.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -247,7 +246,7 @@
     <span class="p">)</span>
     <span class="c1"># Declare an empty list to store data files.</span>
     <span class="n">inventory_of_data_sets</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="c1"># Iterate over sub folder, and then iterate over files within subfolders,</span>
+    <span class="c1"># Iterate over sub folder, and then iterate over files within sub-folders,</span>
     <span class="c1"># get files, assign correct index, and append to the inventory.</span>
     <span class="k">for</span> <span class="n">sub_folder</span> <span class="ow">in</span> <span class="n">inventory_of_sub_folders</span><span class="p">:</span>
         <span class="c1"># Make inventory of data file names.</span>
@@ -278,25 +277,25 @@
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    original_data : pd.DataFrame</span>
+<span class="sd">    original_data : pandas.DataFrame</span>
 <span class="sd">        Original features and targets.</span>
 <span class="sd">    indices_of_features : list</span>
 <span class="sd">        Numeric indication of position of features in `original_data`</span>
 <span class="sd">    indices_of_targets : list</span>
 <span class="sd">        Numeric indication of position of targets in `original_data`</span>
-<span class="sd">    train_features : np.array</span>
+<span class="sd">    train_features : numpy.array</span>
 <span class="sd">        Unscaled training features.</span>
-<span class="sd">    train_targets : np.array</span>
+<span class="sd">    train_targets : numpy.array</span>
 <span class="sd">        Training targets. Shuffled if desired.</span>
-<span class="sd">    validation_features : np.array</span>
+<span class="sd">    validation_features : numpy.array</span>
 <span class="sd">        Validation features</span>
-<span class="sd">    validation_targets : np.array</span>
+<span class="sd">    validation_targets : numpy.array</span>
 <span class="sd">        Validation Targets</span>
-<span class="sd">    test_features : np.array</span>
+<span class="sd">    test_features : numpy.array</span>
 <span class="sd">        Testing features</span>
-<span class="sd">    test_targets : np.array</span>
+<span class="sd">    test_targets : numpy.array</span>
 <span class="sd">        Testing targets</span>
-<span class="sd">    scaled_train_features : np.array</span>
+<span class="sd">    scaled_train_features : numpy.array</span>
 <span class="sd">        Train features scaled to mean zero and unit variance. Shuffled</span>
 <span class="sd">        if desired.</span>
 <span class="sd">    scaled_validation_features : Numpy Array</span>
@@ -322,8 +321,10 @@
 
 <div class="viewcode-block" id="TrainingDataSets.shuffle"><a class="viewcode-back" href="../api/ucf.TrainingDataSets.html#ucf.TrainingDataSets.shuffle">[docs]</a>    <span class="k">def</span> <span class="nf">shuffle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Shuffle the scaled training features and targets.</span>
+<span class="sd">        Shuffle scaled features and unscaled targets for training</span>
 
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
 <span class="sd">        Only scaled training features and targets are shuffled. Validation,</span>
 <span class="sd">        and test data sets are not shuffled.</span>
 
@@ -352,7 +353,7 @@
 
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
-<span class="sd">            Size of the testing set is determined implicitly.</span>
+<span class="sd">        Size of the testing set is determined implicitly.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">validation_end</span> <span class="o">=</span> <span class="n">train_size</span> <span class="o">+</span> <span class="n">validation_size</span>
@@ -387,8 +388,8 @@
 
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
-<span class="sd">            Values are stored in the &#39;features_mean&#39; and</span>
-<span class="sd">            &#39;features_standard_deviation&#39; attribute of the class.</span>
+<span class="sd">        Values are stored in the &#39;features_mean&#39; and</span>
+<span class="sd">        &#39;features_standard_deviation&#39; attribute of the class.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">features_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
@@ -405,7 +406,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Numpy Array</span>
+<span class="sd">        numpy.array</span>
 <span class="sd">            Standardized features are placed inside appropriate</span>
 <span class="sd">            attributes of the class.</span>
 
@@ -426,11 +427,11 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        scaled_train_features : np.array</span>
+<span class="sd">        scaled_train_features : numpy.array</span>
 <span class="sd">            Scaled features for training.</span>
-<span class="sd">        scaled_validation_features : np.array</span>
+<span class="sd">        scaled_validation_features : numpy.array</span>
 <span class="sd">            Scaled features for validation.</span>
-<span class="sd">        scaled_test_features : np.array</span>
+<span class="sd">        scaled_test_features : numpy.array</span>
 <span class="sd">            Scaled features for testing.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -442,15 +443,15 @@
 
 <div class="viewcode-block" id="TrainingDataSets.get_targets"><a class="viewcode-back" href="../api/ucf.TrainingDataSets.html#ucf.TrainingDataSets.get_targets">[docs]</a>    <span class="k">def</span> <span class="nf">get_targets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Convenience method to return targets features.</span>
+<span class="sd">        Convenience method to return targets and features</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        train_targets : np.array</span>
+<span class="sd">        train_targets : numpy.array</span>
 <span class="sd">            Targets for training.</span>
-<span class="sd">        validation_targets : np.array</span>
+<span class="sd">        validation_targets : numpy.array</span>
 <span class="sd">            Targets for validation.</span>
-<span class="sd">        test_targets : np.array</span>
+<span class="sd">        test_targets : numpy.array</span>
 <span class="sd">            Targets for testing.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -474,15 +475,15 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    features_for_training : np.array</span>
+<span class="sd">    features_for_training : numpy.array</span>
 <span class="sd">        Features which will be used for generating reduced sets.</span>
-<span class="sd">    targets_for_training : np.array</span>
+<span class="sd">    targets_for_training : numpy.array</span>
 <span class="sd">        Targets which will be used for generating reduced sets.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    np.array  :</span>
-<span class="sd">        Two separate np.arrays Features and targets reduced to the size of</span>
+<span class="sd">    numpy.array  :</span>
+<span class="sd">        Two separate numpy.arrays Features and targets reduced to the size of</span>
 <span class="sd">        equal to the number of samples belonging to the leas frequent class.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -502,16 +503,12 @@
         <span class="n">subset_features</span> <span class="o">=</span> <span class="n">subset_features</span><span class="p">[</span>
             <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">subset_features</span><span class="p">))</span>
         <span class="p">]</span>
-        <span class="c1"># np.hstack((</span>
-        <span class="c1">#     subset_features[0:size, ],</span>
-        <span class="c1">#     np.reshape(np.array([label] * size), newshape=(-1,1))</span>
-        <span class="c1"># ))</span>
         <span class="n">inventory_of_features</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">subset_features</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">size</span><span class="p">,</span> <span class="p">]])</span>
 
         <span class="n">inventory_of_targets</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
             <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">label</span><span class="p">]</span> <span class="o">*</span> <span class="n">size</span><span class="p">),</span> <span class="n">newshape</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
         <span class="p">])</span>
-    <span class="c1"># Return after vstacking.</span>
+    <span class="c1"># Return after v-stacking.</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">inventory_of_features</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">inventory_of_targets</span><span class="p">)</span></div>
 
 
@@ -530,10 +527,10 @@
 <span class="sd">    ----------</span>
 <span class="sd">    number_of_estimators : int</span>
 <span class="sd">        How much estimators will be in the ensemble.</span>
-<span class="sd">    features_for_training : np.array</span>
+<span class="sd">    features_for_training : numpy.array</span>
 <span class="sd">        Features which will be utilized for training of individual</span>
 <span class="sd">        estimators.</span>
-<span class="sd">    targets_for_training : np.array</span>
+<span class="sd">    targets_for_training : numpy.array</span>
 <span class="sd">        Targets which will be utilized for training of individual</span>
 <span class="sd">        estimators.</span>
 
@@ -545,8 +542,8 @@
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
-<span class="sd">        The function does not shuffle the data. If shuffling is</span>
-<span class="sd">        necessary, it has to be done before call to the function.</span>
+<span class="sd">    The function does not shuffle the data. If shuffling is necessary,</span>
+<span class="sd">    it has to be done before call to the function.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">size_of_validation_set</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
@@ -602,19 +599,19 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    probability : np.array</span>
-<span class="sd">        A np.array (N x C) with the probabilities obtained from the</span>
+<span class="sd">    probability : numpy.array</span>
+<span class="sd">        A numpy.array (N x C) with the probabilities obtained from the</span>
 <span class="sd">        underlying classier (soft voting).</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    np.array</span>
+<span class="sd">    numpy.array</span>
 <span class="sd">        Uncertainty estimate for each prediction.</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
-<span class="sd">        For the computation of uncertainty value equal to zero are</span>
-<span class="sd">        replaced with a small constant near zero.</span>
+<span class="sd">    For the computation of uncertainty value equal to zero are</span>
+<span class="sd">    replaced with a small constant near zero.</span>
 
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
@@ -630,9 +627,8 @@
 <span class="sd">    Generate predictions from ensemble</span>
 
 <span class="sd">    The function applies &#39;predict_proba&#39; method to a collection</span>
-<span class="sd">    of estimators, in order to get predictions and computes uncertainty</span>
-<span class="sd">    estimate via predictive entropy. Along side output, an</span>
-<span class="sd">    uncertainty estimate is returned as well.</span>
+<span class="sd">    of estimators, in order to get predictions and compute uncertainty</span>
+<span class="sd">    estimate via predictive entropy.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -643,9 +639,9 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    ensemble_predictions : np.array</span>
+<span class="sd">    ensemble_predictions : numpy.array</span>
 <span class="sd">        Prediction of class membership.</span>
-<span class="sd">    uncertainty_estimate : np.array</span>
+<span class="sd">    uncertainty_estimate : numpy.array</span>
 <span class="sd">        Uncertainty estimate.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -683,13 +679,13 @@
                              <span class="n">save_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                              <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Plot scatter plot with coloration according to the labels</span>
+<span class="sd">    Produce scatter plot with coloration according to the labels</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    coordinates : np.array</span>
+<span class="sd">    coordinates : numpy.array</span>
 <span class="sd">        Coordinates of points.</span>
-<span class="sd">    labels : np.array</span>
+<span class="sd">    labels : numpy.array</span>
 <span class="sd">        Vector indicating class membership of each point.</span>
 <span class="sd">    legend_colors : dict</span>
 <span class="sd">        Colors to be utilized for coloration of points.</span>
@@ -697,7 +693,7 @@
 <span class="sd">        Labels to be utilized for description in plot legend.</span>
 <span class="sd">    save_plot : bool</span>
 <span class="sd">        Indication whether to save a plot. Defaults to none</span>
-<span class="sd">    path : basestring</span>
+<span class="sd">    path : str</span>
 <span class="sd">        Path including the file name where to save the plot.</span>
 
 <span class="sd">    Returns</span>
@@ -736,21 +732,21 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    reference : np.array</span>
+<span class="sd">    reference : numpy.array</span>
 <span class="sd">        A vector with reference.</span>
-<span class="sd">    output : np.array</span>
+<span class="sd">    output : numpy.array</span>
 <span class="sd">        A vector with targets.</span>
 <span class="sd">    prediction_labels : list</span>
 <span class="sd">        Descriptions of labels.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    Confusion matrix as the pd.DataFrame.</span>
+<span class="sd">    Confusion matrix as the pandas.DataFrame.</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
 <span class="sd">    Reference group is placed in row. Proportion of each prediction</span>
-<span class="sd">    within the reference group is computed across columns (horisontaly).</span>
+<span class="sd">    within the reference group is computed across columns (horizontally).</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Counts.</span>
@@ -787,11 +783,11 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    content : np.array</span>
+<span class="sd">    content : numpy.array</span>
 <span class="sd">        Numpy array with the complete content of the confusion matrix.</span>
 <span class="sd">    save_plot : bool</span>
 <span class="sd">        Indication whether to save the plot. Default set to false.</span>
-<span class="sd">    path : basestring</span>
+<span class="sd">    path : str</span>
 <span class="sd">        Path including the file name where to save the plot.</span>
 
 <span class="sd">    Returns</span>
@@ -857,23 +853,23 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    coordinates : np.array</span>
+<span class="sd">    coordinates : numpy.array</span>
 <span class="sd">        Coordinates of labels</span>
-<span class="sd">    original_labels : np.array</span>
+<span class="sd">    original_labels : numpy.array</span>
 <span class="sd">        Reference one-dimensional encoding of the class membership.</span>
 <span class="sd">        One-hot encoding is not supported.</span>
-<span class="sd">    predicted_labels : np.array</span>
+<span class="sd">    predicted_labels : numpy.array</span>
 <span class="sd">        Predicted one-dimensional encoding of the class membership.</span>
 <span class="sd">        One-hot encoding is not supported.</span>
 <span class="sd">    legend_colors : dict</span>
 <span class="sd">        Colors to be utilized for coloration of points.</span>
 <span class="sd">    legend_descriptions : dict</span>
 <span class="sd">        Labels to be utilized for description in plot legend.</span>
-<span class="sd">    uncertainty : np.array</span>
+<span class="sd">    uncertainty : numpy.array</span>
 <span class="sd">        Uncertainty of the models estimate of class membership.</span>
 <span class="sd">    save : bool</span>
 <span class="sd">        Option to save the plot. Default set to false.</span>
-<span class="sd">    path : basestring</span>
+<span class="sd">    path : str</span>
 <span class="sd">        Absolute path to the file in which to save a plot.</span>
 
 <span class="sd">    Returns</span>
@@ -941,9 +937,9 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    coordinates : np.array</span>
+<span class="sd">    coordinates : numpy.array</span>
 <span class="sd">        Coordinates of the points.</span>
-<span class="sd">    reference : np.array</span>
+<span class="sd">    reference : numpy.array</span>
 <span class="sd">        Labels of the reference.</span>
 <span class="sd">    solutions : list</span>
 <span class="sd">        List containing solutions of classification problem.</span>
@@ -955,7 +951,9 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    None</span>
-<span class="sd">        No explicit return. Plots are displayed.</span>
+<span class="sd">        No explicit return. Plot is displayed on the screen, or saved</span>
+<span class="sd">        into a file.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Times New Roman&#39;</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;serif&#39;</span>
@@ -1011,15 +1009,15 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    coordinates : np.array</span>
+<span class="sd">    coordinates : numpy.array</span>
 <span class="sd">        Coordinates of points.</span>
-<span class="sd">    class_membership : np.array</span>
+<span class="sd">    class_membership : numpy.array</span>
 <span class="sd">        Indication of class membership.</span>
 <span class="sd">    description : dict</span>
 <span class="sd">        Description of each label.</span>
 <span class="sd">    coloration_mode : str</span>
 <span class="sd">        Indication of the mode of coloration.</span>
-<span class="sd">    coloration : np.array</span>
+<span class="sd">    coloration : numpy.array</span>
 <span class="sd">        Vector with coloration.</span>
 <span class="sd">    save : bool</span>
 <span class="sd">        Option to save the plot.</span>

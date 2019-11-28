@@ -175,7 +175,7 @@
 <dd><p>Original features and targets.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>pd.DataFrame</p>
+<dd class="field-odd"><p>pandas.DataFrame</p>
 </dd>
 </dl>
 </dd></dl>
@@ -208,7 +208,7 @@
 <dd><p>Unscaled training features.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>np.array</p>
+<dd class="field-odd"><p>numpy.array</p>
 </dd>
 </dl>
 </dd></dl>
@@ -219,7 +219,7 @@
 <dd><p>Training targets. Shuffled if desired.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>np.array</p>
+<dd class="field-odd"><p>numpy.array</p>
 </dd>
 </dl>
 </dd></dl>
@@ -230,7 +230,7 @@
 <dd><p>Validation features</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>np.array</p>
+<dd class="field-odd"><p>numpy.array</p>
 </dd>
 </dl>
 </dd></dl>
@@ -241,7 +241,7 @@
 <dd><p>Validation Targets</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>np.array</p>
+<dd class="field-odd"><p>numpy.array</p>
 </dd>
 </dl>
 </dd></dl>
@@ -252,7 +252,7 @@
 <dd><p>Testing features</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>np.array</p>
+<dd class="field-odd"><p>numpy.array</p>
 </dd>
 </dl>
 </dd></dl>
@@ -263,7 +263,7 @@
 <dd><p>Testing targets</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>np.array</p>
+<dd class="field-odd"><p>numpy.array</p>
 </dd>
 </dl>
 </dd></dl>
@@ -275,7 +275,7 @@
 if desired.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>np.array</p>
+<dd class="field-odd"><p>numpy.array</p>
 </dd>
 </dl>
 </dd></dl>
@@ -316,7 +316,7 @@ if desired.</p>
 <td><p>Convenience method to return scaled features.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ucf.TrainingDataSets.get_targets" title="ucf.TrainingDataSets.get_targets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_targets</span></code></a>()</p></td>
-<td><p>Convenience method to return targets features.</p></td>
+<td><p>Convenience method to return targets and features</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#ucf.TrainingDataSets.make_training_data" title="ucf.TrainingDataSets.make_training_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_training_data</span></code></a>(train_size, validation_size)</p></td>
 <td><p>Make features and targets</p></td>
@@ -325,7 +325,7 @@ if desired.</p>
 <td><p>Standardize features in such manner that their mean is centered to zero, and unit of measurement is set to variance.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#ucf.TrainingDataSets.shuffle" title="ucf.TrainingDataSets.shuffle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shuffle</span></code></a>()</p></td>
-<td><p>Shuffle the scaled training features and targets.</p></td>
+<td><p>Shuffle scaled features and unscaled targets for training</p></td>
 </tr>
 </tbody>
 </table>
@@ -355,9 +355,9 @@ in the training data set.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><ul class="simple">
-<li><p><strong>scaled_train_features</strong> (<em>np.array</em>) -- Scaled features for training.</p></li>
-<li><p><strong>scaled_validation_features</strong> (<em>np.array</em>) -- Scaled features for validation.</p></li>
-<li><p><strong>scaled_test_features</strong> (<em>np.array</em>) -- Scaled features for testing.</p></li>
+<li><p><strong>scaled_train_features</strong> (<em>numpy.array</em>) -- Scaled features for training.</p></li>
+<li><p><strong>scaled_validation_features</strong> (<em>numpy.array</em>) -- Scaled features for validation.</p></li>
+<li><p><strong>scaled_test_features</strong> (<em>numpy.array</em>) -- Scaled features for testing.</p></li>
 </ul>
 </p>
 </dd>
@@ -367,13 +367,13 @@ in the training data set.</p>
 <dl class="method">
 <dt id="ucf.TrainingDataSets.get_targets">
 <code class="sig-name descname">get_targets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ucf.html#TrainingDataSets.get_targets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ucf.TrainingDataSets.get_targets" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convenience method to return targets features.</p>
+<dd><p>Convenience method to return targets and features</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><ul class="simple">
-<li><p><strong>train_targets</strong> (<em>np.array</em>) -- Targets for training.</p></li>
-<li><p><strong>validation_targets</strong> (<em>np.array</em>) -- Targets for validation.</p></li>
-<li><p><strong>test_targets</strong> (<em>np.array</em>) -- Targets for testing.</p></li>
+<li><p><strong>train_targets</strong> (<em>numpy.array</em>) -- Targets for training.</p></li>
+<li><p><strong>validation_targets</strong> (<em>numpy.array</em>) -- Targets for validation.</p></li>
+<li><p><strong>test_targets</strong> (<em>numpy.array</em>) -- Targets for testing.</p></li>
 </ul>
 </p>
 </dd>
@@ -407,7 +407,7 @@ to zero, and unit of measurement is set to variance.</p>
 attributes of the class.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>Numpy Array</p>
+<dd class="field-even"><p>numpy.array</p>
 </dd>
 </dl>
 </dd></dl>
@@ -415,7 +415,8 @@ attributes of the class.</p>
 <dl class="method">
 <dt id="ucf.TrainingDataSets.shuffle">
 <code class="sig-name descname">shuffle</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ucf.html#TrainingDataSets.shuffle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ucf.TrainingDataSets.shuffle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Shuffle the scaled training features and targets.</p>
+<dd><p>Shuffle scaled features and unscaled targets for training</p>
+<p class="rubric">Notes</p>
 <p>Only scaled training features and targets are shuffled. Validation,
 and test data sets are not shuffled.</p>
 </dd></dl>

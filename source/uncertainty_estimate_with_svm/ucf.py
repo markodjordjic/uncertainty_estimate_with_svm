@@ -11,15 +11,14 @@ from sklearn.svm import SVC
 
 def get_all_files_within_folder(path, negative_condition):
     """
-    Catalogue all files within a folder which naming conforms to negative
-    condition
+    Catalogue all files within a folder according to negative condition
 
     Parameters
     ----------
-    path : string
+    path : str
         Path to the folder.
-    negative_condition : sting
-        Exact textual content in the name of the files, which is
+    negative_condition : str
+        Exact text contained with the name of the files, which is
         utilized to identify files which will not be catalogued.
 
     Returns
@@ -42,7 +41,7 @@ def get_all_sub_folders_within_folder(path):
 
     Parameters
     ----------
-    path : string
+    path : str
         Path to the main folder.
 
     Returns
@@ -66,13 +65,13 @@ def get_data(folder_wh_data):
 
     Parameters
     ----------
-    folder_wh_data : string
+    folder_wh_data : str
         Folder in which data files are residing.
 
     Returns
     -------
     list
-        A list with all the data sets generated from individual data
+        All the data sets generated from individual data
         files.
 
     """
@@ -82,7 +81,7 @@ def get_data(folder_wh_data):
     )
     # Declare an empty list to store data files.
     inventory_of_data_sets = []
-    # Iterate over sub folder, and then iterate over files within subfolders,
+    # Iterate over sub folder, and then iterate over files within sub-folders,
     # get files, assign correct index, and append to the inventory.
     for sub_folder in inventory_of_sub_folders:
         # Make inventory of data file names.
@@ -113,25 +112,25 @@ class TrainingDataSets:
 
     Attributes
     ----------
-    original_data : pd.DataFrame
+    original_data : pandas.DataFrame
         Original features and targets.
     indices_of_features : list
         Numeric indication of position of features in `original_data`
     indices_of_targets : list
         Numeric indication of position of targets in `original_data`
-    train_features : np.array
+    train_features : numpy.array
         Unscaled training features.
-    train_targets : np.array
+    train_targets : numpy.array
         Training targets. Shuffled if desired.
-    validation_features : np.array
+    validation_features : numpy.array
         Validation features
-    validation_targets : np.array
+    validation_targets : numpy.array
         Validation Targets
-    test_features : np.array
+    test_features : numpy.array
         Testing features
-    test_targets : np.array
+    test_targets : numpy.array
         Testing targets
-    scaled_train_features : np.array
+    scaled_train_features : numpy.array
         Train features scaled to mean zero and unit variance. Shuffled
         if desired.
     scaled_validation_features : Numpy Array
@@ -157,8 +156,10 @@ class TrainingDataSets:
 
     def shuffle(self):
         """
-        Shuffle the scaled training features and targets.
+        Shuffle scaled features and unscaled targets for training
 
+        Notes
+        -----
         Only scaled training features and targets are shuffled. Validation,
         and test data sets are not shuffled.
 
@@ -187,7 +188,7 @@ class TrainingDataSets:
 
         Notes
         -----
-            Size of the testing set is determined implicitly.
+        Size of the testing set is determined implicitly.
 
         """
         validation_end = train_size + validation_size
@@ -222,8 +223,8 @@ class TrainingDataSets:
 
         Notes
         -----
-            Values are stored in the 'features_mean' and
-            'features_standard_deviation' attribute of the class.
+        Values are stored in the 'features_mean' and
+        'features_standard_deviation' attribute of the class.
 
         """
         self.features_mean = np.mean(
@@ -240,7 +241,7 @@ class TrainingDataSets:
 
         Returns
         -------
-        Numpy Array
+        numpy.array
             Standardized features are placed inside appropriate
             attributes of the class.
 
@@ -261,11 +262,11 @@ class TrainingDataSets:
 
         Returns
         -------
-        scaled_train_features : np.array
+        scaled_train_features : numpy.array
             Scaled features for training.
-        scaled_validation_features : np.array
+        scaled_validation_features : numpy.array
             Scaled features for validation.
-        scaled_test_features : np.array
+        scaled_test_features : numpy.array
             Scaled features for testing.
 
         """
@@ -277,15 +278,15 @@ class TrainingDataSets:
 
     def get_targets(self):
         """
-        Convenience method to return targets features.
+        Convenience method to return targets and features
 
         Returns
         -------
-        train_targets : np.array
+        train_targets : numpy.array
             Targets for training.
-        validation_targets : np.array
+        validation_targets : numpy.array
             Targets for validation.
-        test_targets : np.array
+        test_targets : numpy.array
             Targets for testing.
 
         """
@@ -309,15 +310,15 @@ def reduce_set_to_equal_distribution_of_classes(features_for_training,
 
     Parameters
     ----------
-    features_for_training : np.array
+    features_for_training : numpy.array
         Features which will be used for generating reduced sets.
-    targets_for_training : np.array
+    targets_for_training : numpy.array
         Targets which will be used for generating reduced sets.
 
     Returns
     -------
-    np.array  :
-        Two separate np.arrays Features and targets reduced to the size of
+    numpy.array  :
+        Two separate numpy.arrays Features and targets reduced to the size of
         equal to the number of samples belonging to the leas frequent class.
 
     """
@@ -337,16 +338,12 @@ def reduce_set_to_equal_distribution_of_classes(features_for_training,
         subset_features = subset_features[
             np.random.permutation(len(subset_features))
         ]
-        # np.hstack((
-        #     subset_features[0:size, ],
-        #     np.reshape(np.array([label] * size), newshape=(-1,1))
-        # ))
         inventory_of_features.extend([subset_features[0:size, ]])
 
         inventory_of_targets.extend([
             np.reshape(np.array([label] * size), newshape=(-1, 1))
         ])
-    # Return after vstacking.
+    # Return after v-stacking.
     return np.vstack(inventory_of_features), np.vstack(inventory_of_targets)
 
 
@@ -365,10 +362,10 @@ def generate_ensemble(number_of_estimators,
     ----------
     number_of_estimators : int
         How much estimators will be in the ensemble.
-    features_for_training : np.array
+    features_for_training : numpy.array
         Features which will be utilized for training of individual
         estimators.
-    targets_for_training : np.array
+    targets_for_training : numpy.array
         Targets which will be utilized for training of individual
         estimators.
 
@@ -380,8 +377,8 @@ def generate_ensemble(number_of_estimators,
 
     Notes
     -----
-        The function does not shuffle the data. If shuffling is
-        necessary, it has to be done before call to the function.
+    The function does not shuffle the data. If shuffling is necessary,
+    it has to be done before call to the function.
 
     """
     size_of_validation_set = int(
@@ -437,19 +434,19 @@ def compute_predictive_entropy(probability):
 
     Parameters
     ----------
-    probability : np.array
-        A np.array (N x C) with the probabilities obtained from the
+    probability : numpy.array
+        A numpy.array (N x C) with the probabilities obtained from the
         underlying classier (soft voting).
 
     Returns
     -------
-    np.array
+    numpy.array
         Uncertainty estimate for each prediction.
 
     Notes
     -----
-        For the computation of uncertainty value equal to zero are
-        replaced with a small constant near zero.
+    For the computation of uncertainty value equal to zero are
+    replaced with a small constant near zero.
 
     References
     ----------
@@ -465,9 +462,8 @@ def generate_predictions(inventory_of_estimators, features):
     Generate predictions from ensemble
 
     The function applies 'predict_proba' method to a collection
-    of estimators, in order to get predictions and computes uncertainty
-    estimate via predictive entropy. Along side output, an
-    uncertainty estimate is returned as well.
+    of estimators, in order to get predictions and compute uncertainty
+    estimate via predictive entropy.
 
     Parameters
     ----------
@@ -478,9 +474,9 @@ def generate_predictions(inventory_of_estimators, features):
 
     Returns
     -------
-    ensemble_predictions : np.array
+    ensemble_predictions : numpy.array
         Prediction of class membership.
-    uncertainty_estimate : np.array
+    uncertainty_estimate : numpy.array
         Uncertainty estimate.
 
     """
@@ -518,13 +514,13 @@ def scatter_plot_with_groups(coordinates,
                              save_plot=False,
                              path=None):
     """
-    Plot scatter plot with coloration according to the labels
+    Produce scatter plot with coloration according to the labels
 
     Parameters
     ----------
-    coordinates : np.array
+    coordinates : numpy.array
         Coordinates of points.
-    labels : np.array
+    labels : numpy.array
         Vector indicating class membership of each point.
     legend_colors : dict
         Colors to be utilized for coloration of points.
@@ -532,7 +528,7 @@ def scatter_plot_with_groups(coordinates,
         Labels to be utilized for description in plot legend.
     save_plot : bool
         Indication whether to save a plot. Defaults to none
-    path : basestring
+    path : str
         Path including the file name where to save the plot.
 
     Returns
@@ -571,21 +567,21 @@ def make_confusion_matrix(reference, output, prediction_labels):
 
     Parameters
     ----------
-    reference : np.array
+    reference : numpy.array
         A vector with reference.
-    output : np.array
+    output : numpy.array
         A vector with targets.
     prediction_labels : list
         Descriptions of labels.
 
     Returns
     -------
-    Confusion matrix as the pd.DataFrame.
+    Confusion matrix as the pandas.DataFrame.
 
     Notes
     -----
     Reference group is placed in row. Proportion of each prediction
-    within the reference group is computed across columns (horisontaly).
+    within the reference group is computed across columns (horizontally).
 
     """
     # Counts.
@@ -622,11 +618,11 @@ def plot_confusion_matrix(content, save_plot=False, path=None):
 
     Parameters
     ----------
-    content : np.array
+    content : numpy.array
         Numpy array with the complete content of the confusion matrix.
     save_plot : bool
         Indication whether to save the plot. Default set to false.
-    path : basestring
+    path : str
         Path including the file name where to save the plot.
 
     Returns
@@ -692,23 +688,23 @@ def plot_solution(coordinates,
 
     Parameters
     ----------
-    coordinates : np.array
+    coordinates : numpy.array
         Coordinates of labels
-    original_labels : np.array
+    original_labels : numpy.array
         Reference one-dimensional encoding of the class membership.
         One-hot encoding is not supported.
-    predicted_labels : np.array
+    predicted_labels : numpy.array
         Predicted one-dimensional encoding of the class membership.
         One-hot encoding is not supported.
     legend_colors : dict
         Colors to be utilized for coloration of points.
     legend_descriptions : dict
         Labels to be utilized for description in plot legend.
-    uncertainty : np.array
+    uncertainty : numpy.array
         Uncertainty of the models estimate of class membership.
     save : bool
         Option to save the plot. Default set to false.
-    path : basestring
+    path : str
         Absolute path to the file in which to save a plot.
 
     Returns
@@ -776,9 +772,9 @@ def plot_comparison(coordinates,
 
     Parameters
     ----------
-    coordinates : np.array
+    coordinates : numpy.array
         Coordinates of the points.
-    reference : np.array
+    reference : numpy.array
         Labels of the reference.
     solutions : list
         List containing solutions of classification problem.
@@ -790,7 +786,9 @@ def plot_comparison(coordinates,
     Returns
     -------
     None
-        No explicit return. Plots are displayed.
+        No explicit return. Plot is displayed on the screen, or saved
+        into a file.
+
     """
     plt.rcParams['font.serif'] = 'Times New Roman'
     plt.rcParams['font.family'] = 'serif'
@@ -846,15 +844,15 @@ def plot_individual_classes(coordinates,
 
     Parameters
     ----------
-    coordinates : np.array
+    coordinates : numpy.array
         Coordinates of points.
-    class_membership : np.array
+    class_membership : numpy.array
         Indication of class membership.
     description : dict
         Description of each label.
     coloration_mode : str
         Indication of the mode of coloration.
-    coloration : np.array
+    coloration : numpy.array
         Vector with coloration.
     save : bool
         Option to save the plot.
