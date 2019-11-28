@@ -5,5 +5,5 @@ doc/build/doctrees
 make.bat
 Makefile
 source/build
-.egg-info
+*.egg-info
 .idea
