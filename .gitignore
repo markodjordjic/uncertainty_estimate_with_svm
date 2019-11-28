@@ -1,6 +1,7 @@
 data
 output
-\documentation\source
+doc\source
+doc\build\doctrees
 make.bat
 Makefile
 .idea
