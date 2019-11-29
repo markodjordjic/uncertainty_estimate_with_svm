@@ -74,7 +74,7 @@
 
 
 \title{Uncertainty Estimate with SVM}
-\date{Nov 28, 2019}
+\date{Nov 29, 2019}
 \release{0.0.1}
 \author{Marko Djordjic}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -98,6 +98,92 @@
 
 \chapter{ucf Module}
 \label{\detokenize{index:module-ucf}}\label{\detokenize{index:ucf-module}}\index{ucf (module)@\spxentry{ucf}\spxextra{module}}
+Uncertain estimate with SVM is a package which provides a functional
+example on how to train a SVC which outputs an uncertainty estimate
+alongside prediction of class membership.
+
+As noted by Murphy (2012, p. 497) are not probabilistic models. The
+
+In this specific case, a classification task is solved with a SVC. The
+same methodology can be extended to solving regression problems as well.
+In the case of solving a classification task, a specific approach towards
+building a training set has been applied. Each of the estimators is trained
+on a subset of training data set. This subset is in itself designed to
+contain all classes in equal proportions. Therefore the size of the subset
+is determined by the size of least frequent class and the number of classes.
+
+In order to obtain uncertainty estimate from an otherwise non-probabilistic
+model, a variational inference approach was utilized.
+\subsubsection*{Examples}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{k+kn}{import} \PYG{n+nn}{uncertainty\PYGZus{}estimate\PYGZus{}with\PYGZus{}svm}\PYG{n+nn}{.}\PYG{n+nn}{ucf} \PYG{k}{as} \PYG{n+nn}{ue\PYGZus{}svm}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{c+c1}{\PYGZsh{} Get the training set with the equal number of classes.}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{reduced\PYGZus{}set} \PYG{o}{=} \PYG{n}{ue\PYGZus{}svm}\PYG{o}{.}\PYG{n}{reduce\PYGZus{}set\PYGZus{}to\PYGZus{}equal\PYGZus{}distribution\PYGZus{}of\PYGZus{}classes}\PYG{p}{(}
+\PYG{g+go}{        features\PYGZus{}for\PYGZus{}training=features, targets\PYGZus{}for\PYGZus{}training=targets}
+\PYG{g+go}{        )}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{ensemble} \PYG{o}{=} \PYG{n}{ue\PYGZus{}svm}\PYG{o}{.}\PYG{n}{generate\PYGZus{}ensemble}\PYG{p}{(}\PYG{n}{number\PYGZus{}of\PYGZus{}estimators}\PYG{o}{=}\PYG{l+m+mi}{30}\PYG{p}{,}
+\PYG{g+go}{        features\PYGZus{}for\PYGZus{}training=reduced\PYGZus{}set[, 0:9],}
+\PYG{g+go}{        targets\PYGZus{}for\PYGZus{}training=reduced\PYGZus{}set[, 10]}
+\PYG{g+go}{        )}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{predictions}\PYG{p}{,} \PYG{n}{uncertainty} \PYG{o}{=} \PYG{n}{ue\PYGZus{}svm}\PYG{o}{.}\PYG{n}{generate\PYGZus{}predictions}\PYG{p}{(}
+\PYG{g+go}{        inventory\PYGZus{}of\PYGZus{}estimators=ensemble,}
+\PYG{g+go}{        features=x\PYGZus{}test}
+\PYG{g+go}{    )}
+\end{sphinxVerbatim}
+
+Below we can take a look at the solution produced by the single SVM.
+
+\begin{figure}[htbp]
+\centering
+
+\noindent\sphinxincludegraphics{{010_single_svc_predictions}.jpg}
+\end{figure}
+
+And here is the confusion matrix for the single SVM.
+
+\begin{figure}[htbp]
+\centering
+
+\noindent\sphinxincludegraphics{{010_single_svc_cn_matrix}.jpg}
+\end{figure}
+
+SVC ensemble produces different solution, as we can see from the image
+below.
+
+\begin{figure}[htbp]
+\centering
+
+\noindent\sphinxincludegraphics{{010_ensemble_svc_prediction}.jpg}
+\end{figure}
+
+Also distribution of classes across the prediction is different.
+
+\begin{figure}[htbp]
+\centering
+
+\noindent\sphinxincludegraphics{{010_ensemble_svc_cn_matrix}.jpg}
+\end{figure}
+
+Finally we can take a look a te comparison between a single SVC and an
+ensemble of SVCs.
+
+\begin{figure}[htbp]
+\centering
+
+\noindent\sphinxincludegraphics{{010_comparison}.jpg}
+\end{figure}
+
+There is clearly a different fit, which has been achieved on the basis
+of training of multiple SVCs on a balanced set, and some of the bias
+of the model trained on the imbalanced set has be removed.
+However, even though this allows for training of SVMs on larger training
+sets, there are two relative problems with this solution: (a) minor
+but still present loss in accuracy, and (b) slower execution
+of the ensemble.
+\subsubsection*{References}
+\subsubsection*{Notes}
+
 
 \section{Functions}
 \label{\detokenize{index:functions}}
