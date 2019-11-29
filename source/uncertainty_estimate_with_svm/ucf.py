@@ -32,32 +32,41 @@ Examples
         features=x_test
     )
 
+.. raw:: latex
+   \\newpage
+
 Below we can take a look at the solution produced by the single SVM.
 
-.. figure::  010_single_svc_predictions.jpg
-   :align:   center
+.. figure:: 010_single_svc_predictions.jpg
+    :align: center
 
 And here is the confusion matrix for the single SVM.
 
-.. figure::  010_single_svc_cn_matrix.jpg
-   :align:   center
+.. figure:: 010_single_svc_cn_matrix.jpg
+    :align: center
+
+.. raw:: latex
+   \\newpage
 
 SVC ensemble produces different solution, as we can see from the image
 below.
 
 .. figure::  010_ensemble_svc_prediction.jpg
-   :align:   center
+    :align:   center
 
 Also distribution of classes across the prediction is different.
 
 .. figure::  010_ensemble_svc_cn_matrix.jpg
-   :align:   center
+    :align:   center
+
+.. raw:: latex
+    \\newpage
 
 Finally we can take a look a te comparison between a single SVC and an
 ensemble of SVCs.
 
-.. figure::  010_comparison.jpg
-   :align:   center
+.. figure:: 010_comparison.jpg
+    :align: center
 
 There is clearly a different fit, which has been achieved on the basis
 of training of multiple SVCs on a balanced set, and some of the bias

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.11.28)  29 NOV 2019 14:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.11.28)  29 NOV 2019 17:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -997,16 +997,12 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1166.
 Package rerunfilecheck Info: File `uncertaintyestimatewithsvm.out' has not chan
 ged.
 (rerunfilecheck)             Checksum: 73000A1061192C10819153B84CF064A0;754.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1166.
  ) 
 Here is how much of TeX's memory you used:
  14060 strings out of 492164
  198911 string characters out of 6129087
- 314100 words of memory out of 5000000
+ 314121 words of memory out of 5000000
  17979 multiletter control sequences out of 15000+600000
  69814 words of font info for 98 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
@@ -1019,7 +1015,7 @@ texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb><c:/texlive/2019/t
 exmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2019/texmf-dist/fonts
 /type1/urw/times/utmb8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/times/u
 tmr8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on uncertaintyestimatewithsvm.pdf (19 pages, 533003 bytes).
+Output written on uncertaintyestimatewithsvm.pdf (19 pages, 533136 bytes).
 PDF statistics:
  273 PDF objects out of 1000 (max. 8388607)
  222 compressed objects within 3 object streams
