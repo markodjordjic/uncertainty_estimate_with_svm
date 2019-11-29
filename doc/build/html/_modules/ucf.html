@@ -163,7 +163,85 @@
            <div itemprop="articleBody">
             
   <h1>Source code for ucf</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">io</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Uncertain estimate with SVM is a package which provides a functional</span>
+<span class="sd">example on how to train a SVC which outputs an uncertainty estimate</span>
+<span class="sd">alongside prediction of class membership.</span>
+
+<span class="sd">As noted by Murphy (2012, p. 497) are not probabilistic models. The</span>
+
+<span class="sd">In this specific case, a classification task is solved with a SVC. The</span>
+<span class="sd">same methodology can be extended to solving regression problems as well.</span>
+<span class="sd">In the case of solving a classification task, a specific approach towards</span>
+<span class="sd">building a training set has been applied. Each of the estimators is trained</span>
+<span class="sd">on a subset of training data set. This subset is in itself designed to</span>
+<span class="sd">contain all classes in equal proportions. Therefore the size of the subset</span>
+<span class="sd">is determined by the size of least frequent class and the number of classes.</span>
+
+<span class="sd">In order to obtain uncertainty estimate from an otherwise non-probabilistic</span>
+<span class="sd">model, a variational inference approach was utilized.</span>
+
+<span class="sd">Examples</span>
+<span class="sd">--------</span>
+<span class="sd">&gt;&gt;&gt; import uncertainty_estimate_with_svm.ucf as ue_svm</span>
+<span class="sd">&gt;&gt;&gt; # Get the training set with the equal number of classes.</span>
+<span class="sd">&gt;&gt;&gt; reduced_set = ue_svm.reduce_set_to_equal_distribution_of_classes(</span>
+<span class="sd">        features_for_training=features, targets_for_training=targets</span>
+<span class="sd">        )</span>
+<span class="sd">&gt;&gt;&gt; ensemble = ue_svm.generate_ensemble(number_of_estimators=30,</span>
+<span class="sd">        features_for_training=reduced_set[, 0:9],</span>
+<span class="sd">        targets_for_training=reduced_set[, 10]</span>
+<span class="sd">        )</span>
+<span class="sd">&gt;&gt;&gt; predictions, uncertainty = ue_svm.generate_predictions(</span>
+<span class="sd">        inventory_of_estimators=ensemble,</span>
+<span class="sd">        features=x_test</span>
+<span class="sd">    )</span>
+
+<span class="sd">Below we can take a look at the solution produced by the single SVM.</span>
+
+<span class="sd">.. figure::  010_single_svc_predictions.jpg</span>
+<span class="sd">   :align:   center</span>
+
+<span class="sd">And here is the confusion matrix for the single SVM.</span>
+
+<span class="sd">.. figure::  010_single_svc_cn_matrix.jpg</span>
+<span class="sd">   :align:   center</span>
+
+<span class="sd">SVC ensemble produces different solution, as we can see from the image</span>
+<span class="sd">below.</span>
+
+<span class="sd">.. figure::  010_ensemble_svc_prediction.jpg</span>
+<span class="sd">   :align:   center</span>
+
+<span class="sd">Also distribution of classes across the prediction is different.</span>
+
+<span class="sd">.. figure::  010_ensemble_svc_cn_matrix.jpg</span>
+<span class="sd">   :align:   center</span>
+
+<span class="sd">Finally we can take a look a te comparison between a single SVC and an</span>
+<span class="sd">ensemble of SVCs.</span>
+
+<span class="sd">.. figure::  010_comparison.jpg</span>
+<span class="sd">   :align:   center</span>
+
+<span class="sd">There is clearly a different fit, which has been achieved on the basis</span>
+<span class="sd">of training of multiple SVCs on a balanced set, and some of the bias</span>
+<span class="sd">of the model trained on the imbalanced set has be removed.</span>
+<span class="sd">However, even though this allows for training of SVMs on larger training</span>
+<span class="sd">sets, there are two relative problems with this solution: (a) minor</span>
+<span class="sd">but still present loss in accuracy, and (b) slower execution</span>
+<span class="sd">of the ensemble.</span>
+
+<span class="sd">References</span>
+<span class="sd">----------</span>
+
+<span class="sd">Notes</span>
+<span class="sd">-----</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">io</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">product</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1073,276 +1151,296 @@
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">buffered_image</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span></div>
 
 
-<span class="c1"># if __name__ == &#39;__main__&#39;:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 
-    <span class="c1"># # Declare file handles.</span>
-    <span class="c1"># DATA_FILE_FOLDER = r&#39;M:\Projects\010_classification\1_data&#39;</span>
+    <span class="c1"># Declare file handles.</span>
+    <span class="n">DATA_FILE_FOLDER</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;M:\Projects\010_classification\1_data&#39;</span>
 
-    <span class="c1"># # Concatenate data sets.</span>
-    <span class="c1"># concatenated_data_set = pd.concat(</span>
-        <span class="c1"># get_data(folder_wh_data=DATA_FILE_FOLDER),</span>
-        <span class="c1"># axis=0</span>
-    <span class="c1"># )</span>
+    <span class="c1"># Concatenate data sets.</span>
+    <span class="n">concatenated_data_set</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+        <span class="n">get_data</span><span class="p">(</span><span class="n">folder_wh_data</span><span class="o">=</span><span class="n">DATA_FILE_FOLDER</span><span class="p">),</span>
+        <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+    <span class="p">)</span>
 
-    <span class="c1"># attribute_name = [</span>
-        <span class="c1"># &#39;acceleration_frontal_axis_g&#39;,</span>
-        <span class="c1"># &#39;acceleration_vertical_axis_g&#39;,</span>
-        <span class="c1"># &#39;acceleration_lateral_axis_g&#39;,</span>
-        <span class="c1"># &#39;id_antenna_reading_sensor_g&#39;,</span>
-        <span class="c1"># &#39;signal_strength_indicator_g&#39;,</span>
-        <span class="c1"># &#39;phase&#39;,</span>
-        <span class="c1"># &#39;frequency&#39;,</span>
-        <span class="c1"># &#39;activity&#39;</span>
-    <span class="c1"># ]</span>
+    <span class="n">attribute_name</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;acceleration_frontal_axis_g&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;acceleration_vertical_axis_g&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;acceleration_lateral_axis_g&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;id_antenna_reading_sensor_g&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;signal_strength_indicator_g&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;phase&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;frequency&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;activity&#39;</span>
+    <span class="p">]</span>
 
-    <span class="c1"># concatenated_data_set.columns = attribute_name</span>
+    <span class="n">concatenated_data_set</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">attribute_name</span>
 
-    <span class="c1"># # Recoding.</span>
-    <span class="c1"># recoded_targets = np.argmax(np.vstack((</span>
-        <span class="c1"># np.where(concatenated_data_set[&#39;activity&#39;] == 1, 1, 0),</span>
-        <span class="c1"># np.where(concatenated_data_set[&#39;activity&#39;] == 2, 1, 0),</span>
-        <span class="c1"># np.where(concatenated_data_set[&#39;activity&#39;] == 3, 1, 0),</span>
-        <span class="c1"># np.where(concatenated_data_set[&#39;activity&#39;] == 4, 1, 0)</span>
-    <span class="c1"># )), axis=0)</span>
+    <span class="c1"># Recoding.</span>
+    <span class="n">recoded_targets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">concatenated_data_set</span><span class="p">[</span><span class="s1">&#39;activity&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">concatenated_data_set</span><span class="p">[</span><span class="s1">&#39;activity&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">concatenated_data_set</span><span class="p">[</span><span class="s1">&#39;activity&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">concatenated_data_set</span><span class="p">[</span><span class="s1">&#39;activity&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-    <span class="c1"># # Replace original wh. recoded.</span>
-    <span class="c1"># concatenated_data_set[&#39;activity&#39;] = recoded_targets</span>
+    <span class="c1"># Replace original wh. recoded.</span>
+    <span class="n">concatenated_data_set</span><span class="p">[</span><span class="s1">&#39;activity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">recoded_targets</span>
 
-    <span class="c1"># # Label of activity, 0: sit on bed, 1: sit on chair, 2: lying,</span>
-    <span class="c1"># # 3: ambulating</span>
+    <span class="c1"># Label of activity, 0: sit on bed, 1: sit on chair, 2: lying,</span>
+    <span class="c1"># 3: ambulating</span>
 
-    <span class="c1"># # Instantiate a class TrainingDataSets.</span>
-    <span class="c1"># training_data_sets = TrainingDataSets(</span>
-        <span class="c1"># features_and_targets_data_set=concatenated_data_set.values</span>
-    <span class="c1"># )</span>
+    <span class="c1"># Instantiate a class TrainingDataSets.</span>
+    <span class="n">training_data_sets</span> <span class="o">=</span> <span class="n">TrainingDataSets</span><span class="p">(</span>
+        <span class="n">features_and_targets_data_set</span><span class="o">=</span><span class="n">concatenated_data_set</span><span class="o">.</span><span class="n">values</span>
+    <span class="p">)</span>
 
-    <span class="c1"># # Set indices of features.</span>
-    <span class="c1"># training_data_sets.indices_of_features = list(range(3))</span>
+    <span class="c1"># Set indices of features.</span>
+    <span class="n">training_data_sets</span><span class="o">.</span><span class="n">indices_of_features</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 
-    <span class="c1"># # Set indices of targets.</span>
-    <span class="c1"># training_data_sets.indices_of_targets = 7</span>
+    <span class="c1"># Set indices of targets.</span>
+    <span class="n">training_data_sets</span><span class="o">.</span><span class="n">indices_of_targets</span> <span class="o">=</span> <span class="mi">7</span>
 
-    <span class="c1"># # Make training, validation and testing data sets.</span>
-    <span class="c1"># training_data_sets.make_training_data(</span>
-        <span class="c1"># train_size=int(len(concatenated_data_set)*.75),</span>
-        <span class="c1"># validation_size=int(len(concatenated_data_set)*.05)</span>
-    <span class="c1"># )</span>
+    <span class="c1"># Make training, validation and testing data sets.</span>
+    <span class="n">training_data_sets</span><span class="o">.</span><span class="n">make_training_data</span><span class="p">(</span>
+        <span class="n">train_size</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">concatenated_data_set</span><span class="p">)</span><span class="o">*.</span><span class="mi">75</span><span class="p">),</span>
+        <span class="n">validation_size</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">concatenated_data_set</span><span class="p">)</span><span class="o">*.</span><span class="mi">05</span><span class="p">)</span>
+    <span class="p">)</span>
 
-    <span class="c1"># # Compute mean and standard deviation.</span>
-    <span class="c1"># training_data_sets.compute_mean_and_standard_deviation()</span>
+    <span class="c1"># Compute mean and standard deviation.</span>
+    <span class="n">training_data_sets</span><span class="o">.</span><span class="n">compute_mean_and_standard_deviation</span><span class="p">()</span>
 
-    <span class="c1"># # Scale features.</span>
-    <span class="c1"># training_data_sets.scale_features()</span>
+    <span class="c1"># Scale features.</span>
+    <span class="n">training_data_sets</span><span class="o">.</span><span class="n">scale_features</span><span class="p">()</span>
 
-    <span class="c1"># # Shuffle scaled features and targets.</span>
-    <span class="c1"># training_data_sets.shuffle()</span>
+    <span class="c1"># Shuffle scaled features and targets.</span>
+    <span class="n">training_data_sets</span><span class="o">.</span><span class="n">shuffle</span><span class="p">()</span>
 
-    <span class="c1"># # Get scaled features.</span>
-    <span class="c1"># x_train, x_validation, x_test = \</span>
-        <span class="c1"># training_data_sets.get_scaled_features()</span>
+    <span class="c1"># Get scaled features.</span>
+    <span class="n">x_train</span><span class="p">,</span> <span class="n">x_validation</span><span class="p">,</span> <span class="n">x_test</span> <span class="o">=</span> \
+        <span class="n">training_data_sets</span><span class="o">.</span><span class="n">get_scaled_features</span><span class="p">()</span>
 
-    <span class="c1"># # Suppress scientific notation.</span>
-    <span class="c1"># np.set_printoptions(suppress=True)</span>
-    <span class="c1"># print(np.var(x_train, axis=0))</span>
+    <span class="c1"># Suppress scientific notation.</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 
-    <span class="c1"># # Get targets.</span>
-    <span class="c1"># y_train, y_validation, y_test = \</span>
-        <span class="c1"># training_data_sets.get_targets()</span>
+    <span class="c1"># Get targets.</span>
+    <span class="n">y_train</span><span class="p">,</span> <span class="n">y_validation</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> \
+        <span class="n">training_data_sets</span><span class="o">.</span><span class="n">get_targets</span><span class="p">()</span>
 
-    <span class="c1"># # Latent factor analysis.</span>
-    <span class="c1"># latent_factor = PCA(n_components=2)</span>
-    <span class="c1"># latent_factor.fit(X=x_train)</span>
-    <span class="c1"># projection = latent_factor.transform(X=x_train)</span>
+    <span class="c1"># Latent factor analysis.</span>
+    <span class="n">latent_factor</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">latent_factor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">x_train</span><span class="p">)</span>
+    <span class="n">projection</span> <span class="o">=</span> <span class="n">latent_factor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">x_train</span><span class="p">)</span>
 
-    <span class="c1"># # Frequency of classes.</span>
-    <span class="c1"># class_proportion_train = (np.bincount(</span>
-        <span class="c1"># y_train.astype(int)</span>
-    <span class="c1"># )/len(y_train)*100).astype(int)</span>
+    <span class="c1"># Frequency of classes.</span>
+    <span class="n">class_proportion_train</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span>
+        <span class="n">y_train</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 
-    <span class="c1"># # Plot class membership.</span>
-    <span class="c1"># scatter_plot_with_groups(</span>
-        <span class="c1"># coordinates=projection,</span>
-        <span class="c1"># labels=y_train,</span>
-        <span class="c1"># legend_colors={</span>
-            <span class="c1"># 0: &#39;blue&#39;,</span>
-            <span class="c1"># 1: &#39;orange&#39;,</span>
-            <span class="c1"># 2: &#39;green&#39;,</span>
-            <span class="c1"># 3: &#39;red&#39;</span>
-        <span class="c1"># },</span>
-        <span class="c1"># legend_descriptions={</span>
-            <span class="c1"># 0: &#39;Sitting on bed: &#39;+str(class_proportion_train[0])+&#39;%&#39;,</span>
-            <span class="c1"># 1: &#39;Sitting on chair: &#39;+str(class_proportion_train[1])+&#39;%&#39;,</span>
-            <span class="c1"># 2: &#39;Lying: &#39;+str(class_proportion_train[2])+&#39;%&#39;,</span>
-            <span class="c1"># 3: &#39;Ambulating: &#39;+str(class_proportion_train[3])+&#39;%&#39;</span>
-        <span class="c1"># }</span>
-    <span class="c1"># )</span>
+    <span class="c1"># Plot class membership.</span>
+    <span class="n">scatter_plot_with_groups</span><span class="p">(</span>
+        <span class="n">coordinates</span><span class="o">=</span><span class="n">projection</span><span class="p">,</span>
+        <span class="n">labels</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span>
+        <span class="n">legend_colors</span><span class="o">=</span><span class="p">{</span>
+            <span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+            <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span>
+            <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span>
+            <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span>
+        <span class="p">},</span>
+        <span class="n">legend_descriptions</span><span class="o">=</span><span class="p">{</span>
+            <span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;Sitting on bed: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">class_proportion_train</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;%&#39;</span><span class="p">,</span>
+            <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Sitting on chair: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">class_proportion_train</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;%&#39;</span><span class="p">,</span>
+            <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Lying: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">class_proportion_train</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;%&#39;</span><span class="p">,</span>
+            <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Ambulating: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">class_proportion_train</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;%&#39;</span>
+        <span class="p">},</span>
+        <span class="n">save_plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">path</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;M:\Projects\010_uncertainty_estimate_with_svm\doc\source\test.jpg&#39;</span>
+    <span class="p">)</span>
 
-    <span class="c1"># # Plot individual classes.</span>
-    <span class="c1"># plot_individual_classes(</span>
-        <span class="c1"># coordinates=projection,</span>
-        <span class="c1"># class_membership=y_train,</span>
-        <span class="c1"># description={</span>
-            <span class="c1"># 0: &#39;Sitting on bed: &#39;+str(class_proportion_train[0])+&#39;%&#39;,</span>
-            <span class="c1"># 1: &#39;Sitting on chair: &#39;+str(class_proportion_train[1])+&#39;%&#39;,</span>
-            <span class="c1"># 2: &#39;Lying: &#39;+str(class_proportion_train[2])+&#39;%&#39;,</span>
-            <span class="c1"># 3: &#39;Ambulating: &#39;+str(class_proportion_train[3])+&#39;%&#39;</span>
-        <span class="c1"># },</span>
-        <span class="c1"># coloration_mode=&#39;discrete&#39;,</span>
-        <span class="c1"># coloration={</span>
-            <span class="c1"># 0: &#39;blue&#39;,</span>
-            <span class="c1"># 1: &#39;orange&#39;,</span>
-            <span class="c1"># 2: &#39;green&#39;,</span>
-            <span class="c1"># 3: &#39;red&#39;</span>
-        <span class="c1"># }</span>
-    <span class="c1"># )</span>
+    <span class="c1"># Plot individual classes.</span>
+    <span class="n">plot_individual_classes</span><span class="p">(</span>
+        <span class="n">coordinates</span><span class="o">=</span><span class="n">projection</span><span class="p">,</span>
+        <span class="n">class_membership</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="p">{</span>
+            <span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;Sitting on bed: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">class_proportion_train</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;%&#39;</span><span class="p">,</span>
+            <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Sitting on chair: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">class_proportion_train</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;%&#39;</span><span class="p">,</span>
+            <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Lying: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">class_proportion_train</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;%&#39;</span><span class="p">,</span>
+            <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Ambulating: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">class_proportion_train</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;%&#39;</span>
+        <span class="p">},</span>
+        <span class="n">coloration_mode</span><span class="o">=</span><span class="s1">&#39;discrete&#39;</span><span class="p">,</span>
+        <span class="n">coloration</span><span class="o">=</span><span class="p">{</span>
+            <span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+            <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span>
+            <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span>
+            <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
 
-    <span class="c1"># # Fit a SVM.</span>
-    <span class="c1"># estimator = SVC(</span>
-        <span class="c1"># C=1,</span>
-        <span class="c1"># kernel=&#39;rbf&#39;,</span>
-        <span class="c1"># probability=True,</span>
-        <span class="c1"># random_state=np.random.seed(0)</span>
-    <span class="c1"># )</span>
-    <span class="c1"># estimator.fit(X=x_train, y=y_train)</span>
+    <span class="c1"># Fit a SVM.</span>
+    <span class="n">estimator</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span>
+        <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span>
+        <span class="n">probability</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
 
-    <span class="c1"># # Generate predictions.</span>
-    <span class="c1"># predictions = estimator.predict(X=x_test)</span>
+    <span class="c1"># Generate predictions.</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">x_test</span><span class="p">)</span>
 
-    <span class="c1"># # Get estimators uncertainty estimate.</span>
-    <span class="c1"># uncertainty_estimate = estimator.predict_proba(X=x_test)</span>
-    <span class="c1"># uncertainty_estimate_per_class = uncertainty_estimate[</span>
-        <span class="c1"># list(range(0, len(uncertainty_estimate))),</span>
-        <span class="c1"># [int(column) for column in predictions]</span>
-    <span class="c1"># ]</span>
+    <span class="c1"># Get estimators uncertainty estimate.</span>
+    <span class="n">uncertainty_estimate</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">x_test</span><span class="p">)</span>
+    <span class="n">uncertainty_estimate_per_class</span> <span class="o">=</span> <span class="n">uncertainty_estimate</span><span class="p">[</span>
+        <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">uncertainty_estimate</span><span class="p">))),</span>
+        <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">column</span><span class="p">)</span> <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">predictions</span><span class="p">]</span>
+    <span class="p">]</span>
 
-    <span class="c1"># # Compute accuracy.</span>
-    <span class="c1"># accuracy = estimator.score(X=x_test, y=y_test)</span>
-    <span class="c1"># print(&#39;Estimator accuracy: %s percent.&#39; % int(accuracy*100))</span>
+    <span class="c1"># Compute accuracy.</span>
+    <span class="n">accuracy</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_test</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Estimator accuracy: </span><span class="si">%s</span><span class="s1"> percent.&#39;</span> <span class="o">%</span> <span class="nb">int</span><span class="p">(</span><span class="n">accuracy</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
 
-    <span class="c1"># # Frequency of classes.</span>
-    <span class="c1"># class_proportion_test = (np.bincount(</span>
-        <span class="c1"># y_test.astype(int)</span>
-    <span class="c1"># ) / len(y_test) * 100).astype(int)</span>
+    <span class="c1"># Frequency of classes.</span>
+    <span class="n">class_proportion_test</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span>
+        <span class="n">y_test</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 
-    <span class="c1"># # Plot decision boundary.</span>
-    <span class="c1"># plot_solution(</span>
-        <span class="c1"># coordinates=latent_factor.transform(x_test),</span>
-        <span class="c1"># original_labels=y_test,</span>
-        <span class="c1"># predicted_labels=predictions,</span>
-        <span class="c1"># legend_colors={</span>
-            <span class="c1"># 0: &#39;blue&#39;,</span>
-            <span class="c1"># 1: &#39;orange&#39;,</span>
-            <span class="c1"># 2: &#39;green&#39;,</span>
-            <span class="c1"># 3: &#39;red&#39;</span>
-        <span class="c1"># },</span>
-        <span class="c1"># legend_descriptions={</span>
-            <span class="c1"># 0: &#39;Sit. bed: &#39;+str(class_proportion_test[0])+&#39;%&#39;,</span>
-            <span class="c1"># 1: &#39;Sit. chair: &#39;+str(class_proportion_test[1])+&#39;%&#39;,</span>
-            <span class="c1"># 2: &#39;Lay.: &#39;+str(class_proportion_test[2])+&#39;%&#39;,</span>
-            <span class="c1"># 3: &#39;Amb.: &#39;+str(class_proportion_test[3])+&#39;%&#39;</span>
-        <span class="c1"># },</span>
-        <span class="c1"># uncertainty=1-uncertainty_estimate_per_class</span>
-    <span class="c1"># )</span>
+    <span class="c1"># Plot decision boundary.</span>
+    <span class="n">plot_solution</span><span class="p">(</span>
+        <span class="n">coordinates</span><span class="o">=</span><span class="n">latent_factor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x_test</span><span class="p">),</span>
+        <span class="n">original_labels</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span>
+        <span class="n">predicted_labels</span><span class="o">=</span><span class="n">predictions</span><span class="p">,</span>
+        <span class="n">legend_colors</span><span class="o">=</span><span class="p">{</span>
+            <span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+            <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span>
+            <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span>
+            <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span>
+        <span class="p">},</span>
+        <span class="n">legend_descriptions</span><span class="o">=</span><span class="p">{</span>
+            <span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;Sit. bed: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">class_proportion_test</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;%&#39;</span><span class="p">,</span>
+            <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Sit. chair: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">class_proportion_test</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;%&#39;</span><span class="p">,</span>
+            <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Lay.: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">class_proportion_test</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;%&#39;</span><span class="p">,</span>
+            <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Amb.: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">class_proportion_test</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;%&#39;</span>
+        <span class="p">},</span>
+        <span class="n">uncertainty</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">uncertainty_estimate_per_class</span><span class="p">,</span>
+        <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">path</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;M:\Projects\010_uncertainty_estimate_with_svm\doc\source&#39;</span>
+        <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;\010_single_svc_predictions.jpg&#39;</span>
+    <span class="p">)</span>
 
-    <span class="c1"># # Make confusion matrix.</span>
-    <span class="c1"># table_with_confusion_matrix = make_confusion_matrix(</span>
-        <span class="c1"># reference=y_test,</span>
-        <span class="c1"># output=predictions,</span>
-        <span class="c1"># prediction_labels=[</span>
-            <span class="c1"># &#39;Sitting on bed&#39;,</span>
-            <span class="c1"># &#39;Sitting on chair&#39;,</span>
-            <span class="c1"># &#39;Lying&#39;,</span>
-            <span class="c1"># &#39;Ambulating&#39;</span>
-        <span class="c1"># ]</span>
-    <span class="c1"># )</span>
+    <span class="c1"># Make confusion matrix.</span>
+    <span class="n">table_with_confusion_matrix</span> <span class="o">=</span> <span class="n">make_confusion_matrix</span><span class="p">(</span>
+        <span class="n">reference</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span>
+        <span class="n">output</span><span class="o">=</span><span class="n">predictions</span><span class="p">,</span>
+        <span class="n">prediction_labels</span><span class="o">=</span><span class="p">[</span>
+            <span class="s1">&#39;Sitting on bed&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Sitting on chair&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Lying&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Ambulating&#39;</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
 
-    <span class="c1"># # Plot confusion matrix.</span>
-    <span class="c1"># plot_confusion_matrix(content=table_with_confusion_matrix)</span>
+    <span class="c1"># Plot confusion matrix.</span>
+    <span class="n">plot_confusion_matrix</span><span class="p">(</span>
+        <span class="n">content</span><span class="o">=</span><span class="n">table_with_confusion_matrix</span><span class="p">,</span>
+        <span class="n">save_plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">path</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;M:\Projects\010_uncertainty_estimate_with_svm\doc\source&#39;</span>
+             <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;\010_single_svc_cn_matrix.jpg&#39;</span>
 
-    <span class="c1"># # Generate balanced set.</span>
-    <span class="c1"># balanced_x_train, balanced_y_train = \</span>
-        <span class="c1"># reduce_set_to_equal_distribution_of_classes(</span>
-            <span class="c1"># features_for_training=x_train,</span>
-            <span class="c1"># targets_for_training=y_train</span>
-        <span class="c1"># )</span>
+    <span class="p">)</span>
 
-    <span class="c1"># # Fit ensemble.</span>
-    <span class="c1"># ensembles = generate_ensemble(</span>
-        <span class="c1"># number_of_estimators=30,</span>
-        <span class="c1"># features_for_training=balanced_x_train,</span>
-        <span class="c1"># targets_for_training=balanced_y_train</span>
-    <span class="c1"># )</span>
+    <span class="c1"># Generate balanced set.</span>
+    <span class="n">balanced_x_train</span><span class="p">,</span> <span class="n">balanced_y_train</span> <span class="o">=</span> \
+        <span class="n">reduce_set_to_equal_distribution_of_classes</span><span class="p">(</span>
+            <span class="n">features_for_training</span><span class="o">=</span><span class="n">x_train</span><span class="p">,</span>
+            <span class="n">targets_for_training</span><span class="o">=</span><span class="n">y_train</span>
+        <span class="p">)</span>
 
-    <span class="c1"># # Get ensemble predictions.</span>
-    <span class="c1"># ensemble_predictions, ensemble_uncertainty = generate_predictions(</span>
-        <span class="c1"># inventory_of_estimators=ensembles,</span>
-        <span class="c1"># features=x_test</span>
-    <span class="c1"># )</span>
+    <span class="c1"># Fit ensemble.</span>
+    <span class="n">ensembles</span> <span class="o">=</span> <span class="n">generate_ensemble</span><span class="p">(</span>
+        <span class="n">number_of_estimators</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+        <span class="n">features_for_training</span><span class="o">=</span><span class="n">balanced_x_train</span><span class="p">,</span>
+        <span class="n">targets_for_training</span><span class="o">=</span><span class="n">balanced_y_train</span>
+    <span class="p">)</span>
 
-    <span class="c1"># # Compute ensemble accuracy.</span>
-    <span class="c1"># ensemble_accuracy = (</span>
-        <span class="c1"># np.sum((y_test.astype(int) == ensemble_predictions).astype(int))</span>
-        <span class="c1"># / len(ensemble_predictions)</span>
-    <span class="c1"># )</span>
-    <span class="c1"># print(ensemble_accuracy)</span>
+    <span class="c1"># Get ensemble predictions.</span>
+    <span class="n">ensemble_predictions</span><span class="p">,</span> <span class="n">ensemble_uncertainty</span> <span class="o">=</span> <span class="n">generate_predictions</span><span class="p">(</span>
+        <span class="n">inventory_of_estimators</span><span class="o">=</span><span class="n">ensembles</span><span class="p">,</span>
+        <span class="n">features</span><span class="o">=</span><span class="n">x_test</span>
+    <span class="p">)</span>
 
-    <span class="c1"># # Make confusion matrix.</span>
-    <span class="c1"># table_with_ensemble_confusion_matrix = make_confusion_matrix(</span>
-        <span class="c1"># reference=y_test,</span>
-        <span class="c1"># output=ensemble_predictions,</span>
-        <span class="c1"># prediction_labels=[</span>
-            <span class="c1"># &#39;Sitting on bed&#39;,</span>
-            <span class="c1"># &#39;Sitting on chair&#39;,</span>
-            <span class="c1"># &#39;Lying&#39;,</span>
-            <span class="c1"># &#39;Ambulating&#39;</span>
-        <span class="c1"># ]</span>
-    <span class="c1"># )</span>
+    <span class="c1"># Compute ensemble accuracy.</span>
+    <span class="n">ensemble_accuracy</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_test</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="o">==</span> <span class="n">ensemble_predictions</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+        <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">ensemble_predictions</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ensemble_accuracy</span><span class="p">)</span>
 
-    <span class="c1"># # Plot confusion matrix.</span>
-    <span class="c1"># plot_confusion_matrix(</span>
-        <span class="c1"># content=table_with_ensemble_confusion_matrix</span>
-    <span class="c1"># )</span>
+    <span class="c1"># Make confusion matrix.</span>
+    <span class="n">table_with_ensemble_confusion_matrix</span> <span class="o">=</span> <span class="n">make_confusion_matrix</span><span class="p">(</span>
+        <span class="n">reference</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span>
+        <span class="n">output</span><span class="o">=</span><span class="n">ensemble_predictions</span><span class="p">,</span>
+        <span class="n">prediction_labels</span><span class="o">=</span><span class="p">[</span>
+            <span class="s1">&#39;Sitting on bed&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Sitting on chair&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Lying&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Ambulating&#39;</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
 
-    <span class="c1"># # Plot ensemble&#39;s classification solution.</span>
-    <span class="c1"># plot_solution(</span>
-        <span class="c1"># coordinates=latent_factor.transform(x_test),</span>
-        <span class="c1"># original_labels=y_test,</span>
-        <span class="c1"># predicted_labels=ensemble_predictions,</span>
-        <span class="c1"># legend_colors={</span>
-            <span class="c1"># 0: &#39;blue&#39;,</span>
-            <span class="c1"># 1: &#39;orange&#39;,</span>
-            <span class="c1"># 2: &#39;green&#39;,</span>
-            <span class="c1"># 3: &#39;red&#39;</span>
-        <span class="c1"># },</span>
-        <span class="c1"># legend_descriptions={</span>
-            <span class="c1"># 0: &#39;Sit. bed: &#39;+str(class_proportion_test[0])+&#39;%&#39;,</span>
-            <span class="c1"># 1: &#39;Sit. chair: &#39;+str(class_proportion_test[1])+&#39;%&#39;,</span>
-            <span class="c1"># 2: &#39;Lay.: &#39;+str(class_proportion_test[2])+&#39;%&#39;,</span>
-            <span class="c1"># 3: &#39;Amb.: &#39;+str(class_proportion_test[3])+&#39;%&#39;</span>
-        <span class="c1"># },</span>
-        <span class="c1"># uncertainty=ensemble_uncertainty</span>
-    <span class="c1"># )</span>
+    <span class="c1"># Plot confusion matrix.</span>
+    <span class="n">plot_confusion_matrix</span><span class="p">(</span>
+        <span class="n">content</span><span class="o">=</span><span class="n">table_with_ensemble_confusion_matrix</span><span class="p">,</span>
+        <span class="n">save_plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">path</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;M:\Projects\010_uncertainty_estimate_with_svm\doc\source&#39;</span>
+             <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;\010_ensemble_svm_cn_matrix.jpg&#39;</span>
+    <span class="p">)</span>
 
-    <span class="c1"># # Plot comparison between SVC and SVC ensemble.</span>
-    <span class="c1"># plot_comparison(</span>
-        <span class="c1"># coordinates=latent_factor.transform(X=x_test),</span>
-        <span class="c1"># reference=y_test,</span>
-        <span class="c1"># solutions=[</span>
-            <span class="c1"># predictions, ensemble_predictions</span>
-        <span class="c1"># ],</span>
-        <span class="c1"># coloration={</span>
-            <span class="c1"># 0: &#39;blue&#39;,</span>
-            <span class="c1"># 1: &#39;orange&#39;,</span>
-            <span class="c1"># 2: &#39;green&#39;,</span>
-            <span class="c1"># 3: &#39;red&#39;</span>
-        <span class="c1"># },</span>
-        <span class="c1"># description={</span>
-            <span class="c1"># 0: &#39;Sit. bed: &#39;+str(class_proportion_test[0])+&#39;%&#39;,</span>
-            <span class="c1"># 1: &#39;Sit. chair: &#39;+str(class_proportion_test[1])+&#39;%&#39;,</span>
-            <span class="c1"># 2: &#39;Lay.: &#39;+str(class_proportion_test[2])+&#39;%&#39;,</span>
-            <span class="c1"># 3: &#39;Amb.: &#39;+str(class_proportion_test[3])+&#39;%&#39;</span>
-        <span class="c1"># }</span>
-    <span class="c1"># )</span>
+    <span class="c1"># Plot ensemble&#39;s classification solution.</span>
+    <span class="n">plot_solution</span><span class="p">(</span>
+        <span class="n">coordinates</span><span class="o">=</span><span class="n">latent_factor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x_test</span><span class="p">),</span>
+        <span class="n">original_labels</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span>
+        <span class="n">predicted_labels</span><span class="o">=</span><span class="n">ensemble_predictions</span><span class="p">,</span>
+        <span class="n">legend_colors</span><span class="o">=</span><span class="p">{</span>
+            <span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+            <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span>
+            <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span>
+            <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span>
+        <span class="p">},</span>
+        <span class="n">legend_descriptions</span><span class="o">=</span><span class="p">{</span>
+            <span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;Sit. bed: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">class_proportion_test</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;%&#39;</span><span class="p">,</span>
+            <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Sit. chair: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">class_proportion_test</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;%&#39;</span><span class="p">,</span>
+            <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Lay.: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">class_proportion_test</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;%&#39;</span><span class="p">,</span>
+            <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Amb.: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">class_proportion_test</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;%&#39;</span>
+        <span class="p">},</span>
+        <span class="n">uncertainty</span><span class="o">=</span><span class="n">ensemble_uncertainty</span><span class="p">,</span>
+        <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">path</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;M:\Projects\010_uncertainty_estimate_with_svm\doc\source&#39;</span>
+            <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;\010_ensemble_svm_prediction.jpg&#39;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Plot comparison between SVC and SVC ensemble.</span>
+    <span class="n">plot_comparison</span><span class="p">(</span>
+        <span class="n">coordinates</span><span class="o">=</span><span class="n">latent_factor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">x_test</span><span class="p">),</span>
+        <span class="n">reference</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span>
+        <span class="n">solutions</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">predictions</span><span class="p">,</span> <span class="n">ensemble_predictions</span>
+        <span class="p">],</span>
+        <span class="n">coloration</span><span class="o">=</span><span class="p">{</span>
+            <span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+            <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span>
+            <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span>
+            <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span>
+        <span class="p">},</span>
+        <span class="n">description</span><span class="o">=</span><span class="p">{</span>
+            <span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;Sit. bed: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">class_proportion_test</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;%&#39;</span><span class="p">,</span>
+            <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Sit. chair: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">class_proportion_test</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;%&#39;</span><span class="p">,</span>
+            <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Lay.: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">class_proportion_test</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;%&#39;</span><span class="p">,</span>
+            <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Amb.: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">class_proportion_test</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;%&#39;</span>
+        <span class="p">},</span>
+        <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">path</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;M:\Projects\010_uncertainty_estimate_with_svm\doc\source&#39;</span>
+             <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;\010_comparison.jpg&#39;</span>
+    <span class="p">)</span>
 </pre></div>
 
            </div>

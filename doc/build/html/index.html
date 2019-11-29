@@ -168,6 +168,66 @@
 </div>
 <div class="section" id="module-ucf">
 <span id="ucf-module"></span><h2>ucf Module<a class="headerlink" href="#module-ucf" title="Permalink to this headline">¶</a></h2>
+<p>Uncertain estimate with SVM is a package which provides a functional
+example on how to train a SVC which outputs an uncertainty estimate
+alongside prediction of class membership.</p>
+<p>As noted by Murphy (2012, p. 497) are not probabilistic models. The</p>
+<p>In this specific case, a classification task is solved with a SVC. The
+same methodology can be extended to solving regression problems as well.
+In the case of solving a classification task, a specific approach towards
+building a training set has been applied. Each of the estimators is trained
+on a subset of training data set. This subset is in itself designed to
+contain all classes in equal proportions. Therefore the size of the subset
+is determined by the size of least frequent class and the number of classes.</p>
+<p>In order to obtain uncertainty estimate from an otherwise non-probabilistic
+model, a variational inference approach was utilized.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">uncertainty_estimate_with_svm.ucf</span> <span class="k">as</span> <span class="nn">ue_svm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Get the training set with the equal number of classes.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reduced_set</span> <span class="o">=</span> <span class="n">ue_svm</span><span class="o">.</span><span class="n">reduce_set_to_equal_distribution_of_classes</span><span class="p">(</span>
+<span class="go">        features_for_training=features, targets_for_training=targets</span>
+<span class="go">        )</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ensemble</span> <span class="o">=</span> <span class="n">ue_svm</span><span class="o">.</span><span class="n">generate_ensemble</span><span class="p">(</span><span class="n">number_of_estimators</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+<span class="go">        features_for_training=reduced_set[, 0:9],</span>
+<span class="go">        targets_for_training=reduced_set[, 10]</span>
+<span class="go">        )</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">predictions</span><span class="p">,</span> <span class="n">uncertainty</span> <span class="o">=</span> <span class="n">ue_svm</span><span class="o">.</span><span class="n">generate_predictions</span><span class="p">(</span>
+<span class="go">        inventory_of_estimators=ensemble,</span>
+<span class="go">        features=x_test</span>
+<span class="go">    )</span>
+</pre></div>
+</div>
+<p>Below we can take a look at the solution produced by the single SVM.</p>
+<div class="figure align-center">
+<img alt="_images/010_single_svc_predictions.jpg" src="_images/010_single_svc_predictions.jpg" />
+</div>
+<p>And here is the confusion matrix for the single SVM.</p>
+<div class="figure align-center">
+<img alt="_images/010_single_svc_cn_matrix.jpg" src="_images/010_single_svc_cn_matrix.jpg" />
+</div>
+<p>SVC ensemble produces different solution, as we can see from the image
+below.</p>
+<div class="figure align-center">
+<img alt="_images/010_ensemble_svc_prediction.jpg" src="_images/010_ensemble_svc_prediction.jpg" />
+</div>
+<p>Also distribution of classes across the prediction is different.</p>
+<div class="figure align-center">
+<img alt="_images/010_ensemble_svc_cn_matrix.jpg" src="_images/010_ensemble_svc_cn_matrix.jpg" />
+</div>
+<p>Finally we can take a look a te comparison between a single SVC and an
+ensemble of SVCs.</p>
+<div class="figure align-center">
+<img alt="_images/010_comparison.jpg" src="_images/010_comparison.jpg" />
+</div>
+<p>There is clearly a different fit, which has been achieved on the basis
+of training of multiple SVCs on a balanced set, and some of the bias
+of the model trained on the imbalanced set has be removed.
+However, even though this allows for training of SVMs on larger training
+sets, there are two relative problems with this solution: (a) minor
+but still present loss in accuracy, and (b) slower execution
+of the ensemble.</p>
+<p class="rubric">References</p>
+<p class="rubric">Notes</p>
 <div class="section" id="functions">
 <h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
 <table class="longtable docutils align-default">
