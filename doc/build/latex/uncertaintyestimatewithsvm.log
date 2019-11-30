@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.11.28)  30 NOV 2019 16:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.11.28)  30 NOV 2019 21:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -869,39 +869,40 @@ LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <9> not available
 (Font)              Font shape `T1/pcr/b/n' tried instead on input line 120.
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
 (Font)              Font shape `T1/pcr/m/sl' tried instead on input line 121.
-<010_single_svc_predictions.jpg, id=60, 963.3591pt x 542.025pt>
+<010_single_svc_predictions.jpg, id=60, 424.2249pt x 349.7868pt>
 File: 010_single_svc_predictions.jpg Graphic file (type jpg)
 <use 010_single_svc_predictions.jpg>
 Package pdftex.def Info: 010_single_svc_predictions.jpg  used on input line 140
 .
-(pdftex.def)             Requested size: 452.96994pt x 254.8593pt.
+(pdftex.def)             Requested size: 424.22385pt x 349.78595pt.
  [1
 
 ]
-<010_single_svc_cn_matrix.jpg, id=70, 963.3591pt x 542.025pt>
+<010_single_svc_cn_matrix.jpg, id=70, 424.2249pt x 349.7868pt>
 File: 010_single_svc_cn_matrix.jpg Graphic file (type jpg)
 <use 010_single_svc_cn_matrix.jpg>
 Package pdftex.def Info: 010_single_svc_cn_matrix.jpg  used on input line 148.
-(pdftex.def)             Requested size: 452.96994pt x 254.8593pt.
-<010_ensemble_svc_prediction.jpg, id=71, 963.3591pt x 542.025pt>
+(pdftex.def)             Requested size: 424.22385pt x 349.78595pt.
+ [2 <./010_single_svc_predictions.jpg>]
+<010_ensemble_svc_prediction.jpg, id=76, 963.3591pt x 542.025pt>
 File: 010_ensemble_svc_prediction.jpg Graphic file (type jpg)
 <use 010_ensemble_svc_prediction.jpg>
 Package pdftex.def Info: 010_ensemble_svc_prediction.jpg  used on input line 15
 7.
 (pdftex.def)             Requested size: 452.96994pt x 254.8593pt.
- [2 <./010_single_svc_predictions.jpg> <./010_single_svc_cn_matrix.jpg>]
-<010_ensemble_svc_cn_matrix.jpg, id=78, 963.3591pt x 542.025pt>
+<010_ensemble_svc_cn_matrix.jpg, id=77, 963.3591pt x 542.025pt>
 File: 010_ensemble_svc_cn_matrix.jpg Graphic file (type jpg)
 <use 010_ensemble_svc_cn_matrix.jpg>
 Package pdftex.def Info: 010_ensemble_svc_cn_matrix.jpg  used on input line 165
 .
 (pdftex.def)             Requested size: 452.96994pt x 254.8593pt.
-<010_comparison.jpg, id=79, 963.3591pt x 542.025pt>
+ [3 <./010_single_svc_cn_matrix.jpg> <./010_ensemble_svc_prediction.jpg>]
+<010_comparison.jpg, id=85, 424.2249pt x 349.7868pt>
 File: 010_comparison.jpg Graphic file (type jpg)
 <use 010_comparison.jpg>
 Package pdftex.def Info: 010_comparison.jpg  used on input line 174.
-(pdftex.def)             Requested size: 452.96994pt x 254.8593pt.
- [3 <./010_ensemble_svc_prediction.jpg> <./010_ensemble_svc_cn_matrix.jpg>]
+(pdftex.def)             Requested size: 424.22385pt x 349.78595pt.
+ [4 <./010_ensemble_svc_cn_matrix.jpg> <./010_comparison.jpg>]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 188.
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <10> not available
@@ -926,38 +927,37 @@ Overfull \hbox (58.27596pt too wide) in paragraph at lines 263--264
 
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
 (Font)              Font shape `T1/pcr/b/n' tried instead on input line 280.
-[4 <./010_comparison.jpg>]
+[5]
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 3
 22.
-
-(c:/texlive/2019/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+ (c:/texlive/2019/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) [5] [6] [7]
+) [6] [7]
 Underfull \hbox (badness 10000) in paragraph at lines 629--629
 []\T1/ptm/m/it/10 coordinates\T1/ptm/m/n/10 , \T1/ptm/m/it/10 orig-i-nal_labels
 \T1/ptm/m/n/10 , \T1/ptm/m/it/10 pre-dicted_labels\T1/ptm/m/n/10 , \T1/ptm/m/it
 /10 leg-end_colors\T1/ptm/m/n/10 , \T1/ptm/m/it/10 leg-
  []
 
-
+[8]
 Underfull \hbox (badness 10000) in paragraph at lines 681--681
 []\T1/ptm/m/it/10 features_for_training\T1/ptm/m/n/10 , \T1/ptm/m/it/10 tar-
  []
 
-[8]
+
 Underfull \hbox (badness 10000) in paragraph at lines 716--716
 []\T1/ptm/m/it/10 coordinates\T1/ptm/m/n/10 , \T1/ptm/m/it/10 la-bels\T1/ptm/m/
 n/10 , \T1/ptm/m/it/10 leg-end_colors\T1/ptm/m/n/10 , \T1/ptm/m/it/10 leg-end_d
 escriptions\T1/ptm/m/n/10 ,
  []
 
-
+[9]
 Overfull \hbox (9.1145pt too wide) in paragraph at lines 782--783
 []|[][]\T1/pcr/m/sl/10 TrainingDataSets[][]\T1/ptm/m/n/10 (features_and_targets
 _data_set)| 
  []
 
-[9]
+[10]
 Overfull \hbox (15.27597pt too wide) in paragraph at lines 980--981
 []|[][]\T1/pcr/m/sl/10 compute_mean_and_standard_deviation[][]\T1/ptm/m/n/10 ()
 | 
@@ -969,8 +969,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 995--996
 da-
  []
 
-[10]
-<inheritance-26805a6a50aa09a94e3e8ec84ce8efe11d4fbb3c.pdf, id=190, 171.64125pt 
+[11]
+<inheritance-26805a6a50aa09a94e3e8ec84ce8efe11d4fbb3c.pdf, id=194, 171.64125pt 
 x 99.37125pt>
 File: inheritance-26805a6a50aa09a94e3e8ec84ce8efe11d4fbb3c.pdf Graphic file (ty
 pe pdf)
@@ -978,7 +978,7 @@ pe pdf)
 Package pdftex.def Info: inheritance-26805a6a50aa09a94e3e8ec84ce8efe11d4fbb3c.p
 df  used on input line 1140.
 (pdftex.def)             Requested size: 171.64081pt x 99.371pt.
- [11] [12 <./inheritance-26805a6a50aa09a94e3e8ec84ce8efe11d4fbb3c.pdf>]
+ [12 <./inheritance-26805a6a50aa09a94e3e8ec84ce8efe11d4fbb3c.pdf>]
 Chapter 2.
 [13
 
@@ -1003,11 +1003,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1166.
 Here is how much of TeX's memory you used:
  14060 strings out of 492164
  198907 string characters out of 6129087
- 314113 words of memory out of 5000000
+ 314122 words of memory out of 5000000
  17980 multiletter control sequences out of 15000+600000
  68660 words of font info for 97 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 51i,11n,49p,438b,601s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 51i,12n,49p,438b,683s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2019/texm
 f-dist/fonts/type1/urw/courier/ucrb8a.pfb><c:/texlive/2019/texmf-dist/fonts/typ
 e1/urw/courier/ucrr8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/courier/u
@@ -1016,7 +1016,7 @@ texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb><c:/texlive/2019/t
 exmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2019/texmf-dist/fonts
 /type1/urw/times/utmb8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/times/u
 tmr8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on uncertaintyestimatewithsvm.pdf (19 pages, 532160 bytes).
+Output written on uncertaintyestimatewithsvm.pdf (19 pages, 414772 bytes).
 PDF statistics:
  273 PDF objects out of 1000 (max. 8388607)
  222 compressed objects within 3 object streams
