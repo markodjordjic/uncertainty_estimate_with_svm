@@ -33,7 +33,7 @@ Examples
     )
 
 .. raw:: latex
-   \\newpage
+   \pagebreak
 
 Below we can take a look at the solution produced by the single SVM.
 
@@ -46,7 +46,7 @@ And here is the confusion matrix for the single SVM.
     :align: center
 
 .. raw:: latex
-   \\newpage
+   \pagebreak
 
 SVC ensemble produces different solution, as we can see from the image
 below.
@@ -60,7 +60,7 @@ Also distribution of classes across the prediction is different.
     :align:   center
 
 .. raw:: latex
-    \\newpage
+   \pagebreak
 
 Finally we can take a look a te comparison between a single SVC and an
 ensemble of SVCs.

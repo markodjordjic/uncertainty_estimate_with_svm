@@ -1,23 +1,23 @@
 \indexentry{ucf (module)@\spxentry{ucf}\spxextra{module}|hyperpage}{1}
-\indexentry{compute\_predictive\_entropy() (in module ucf)@\spxentry{compute\_predictive\_entropy()}\spxextra{in module ucf}|hyperpage}{4}
-\indexentry{generate\_ensemble() (in module ucf)@\spxentry{generate\_ensemble()}\spxextra{in module ucf}|hyperpage}{4}
-\indexentry{generate\_predictions() (in module ucf)@\spxentry{generate\_predictions()}\spxextra{in module ucf}|hyperpage}{6}
+\indexentry{compute\_predictive\_entropy() (in module ucf)@\spxentry{compute\_predictive\_entropy()}\spxextra{in module ucf}|hyperpage}{5}
+\indexentry{generate\_ensemble() (in module ucf)@\spxentry{generate\_ensemble()}\spxextra{in module ucf}|hyperpage}{5}
+\indexentry{generate\_predictions() (in module ucf)@\spxentry{generate\_predictions()}\spxextra{in module ucf}|hyperpage}{5}
 \indexentry{get\_all\_files\_within\_folder() (in module ucf)@\spxentry{get\_all\_files\_within\_folder()}\spxextra{in module ucf}|hyperpage}{6}
 \indexentry{get\_all\_sub\_folders\_within\_folder() (in module ucf)@\spxentry{get\_all\_sub\_folders\_within\_folder()}\spxextra{in module ucf}|hyperpage}{6}
 \indexentry{get\_data() (in module ucf)@\spxentry{get\_data()}\spxextra{in module ucf}|hyperpage}{6}
-\indexentry{make\_confusion\_matrix() (in module ucf)@\spxentry{make\_confusion\_matrix()}\spxextra{in module ucf}|hyperpage}{7}
+\indexentry{make\_confusion\_matrix() (in module ucf)@\spxentry{make\_confusion\_matrix()}\spxextra{in module ucf}|hyperpage}{6}
 \indexentry{plot\_comparison() (in module ucf)@\spxentry{plot\_comparison()}\spxextra{in module ucf}|hyperpage}{7}
 \indexentry{plot\_confusion\_matrix() (in module ucf)@\spxentry{plot\_confusion\_matrix()}\spxextra{in module ucf}|hyperpage}{7}
-\indexentry{plot\_individual\_classes() (in module ucf)@\spxentry{plot\_individual\_classes()}\spxextra{in module ucf}|hyperpage}{8}
+\indexentry{plot\_individual\_classes() (in module ucf)@\spxentry{plot\_individual\_classes()}\spxextra{in module ucf}|hyperpage}{7}
 \indexentry{plot\_solution() (in module ucf)@\spxentry{plot\_solution()}\spxextra{in module ucf}|hyperpage}{8}
-\indexentry{reduce\_set\_to\_equal\_distribution\_of\_classes() (in module ucf)@\spxentry{reduce\_set\_to\_equal\_distribution\_of\_classes()}\spxextra{in module ucf}|hyperpage}{9}
+\indexentry{reduce\_set\_to\_equal\_distribution\_of\_classes() (in module ucf)@\spxentry{reduce\_set\_to\_equal\_distribution\_of\_classes()}\spxextra{in module ucf}|hyperpage}{8}
 \indexentry{scatter\_plot\_with\_groups() (in module ucf)@\spxentry{scatter\_plot\_with\_groups()}\spxextra{in module ucf}|hyperpage}{9}
-\indexentry{TrainingDataSets (class in ucf)@\spxentry{TrainingDataSets}\spxextra{class in ucf}|hyperpage}{10}
-\indexentry{original\_data (ucf.TrainingDataSets attribute)@\spxentry{original\_data}\spxextra{ucf.TrainingDataSets attribute}|hyperpage}{10}
-\indexentry{indices\_of\_features (ucf.TrainingDataSets attribute)@\spxentry{indices\_of\_features}\spxextra{ucf.TrainingDataSets attribute}|hyperpage}{10}
-\indexentry{indices\_of\_targets (ucf.TrainingDataSets attribute)@\spxentry{indices\_of\_targets}\spxextra{ucf.TrainingDataSets attribute}|hyperpage}{10}
-\indexentry{train\_features (ucf.TrainingDataSets attribute)@\spxentry{train\_features}\spxextra{ucf.TrainingDataSets attribute}|hyperpage}{10}
-\indexentry{train\_targets (ucf.TrainingDataSets attribute)@\spxentry{train\_targets}\spxextra{ucf.TrainingDataSets attribute}|hyperpage}{10}
+\indexentry{TrainingDataSets (class in ucf)@\spxentry{TrainingDataSets}\spxextra{class in ucf}|hyperpage}{9}
+\indexentry{original\_data (ucf.TrainingDataSets attribute)@\spxentry{original\_data}\spxextra{ucf.TrainingDataSets attribute}|hyperpage}{9}
+\indexentry{indices\_of\_features (ucf.TrainingDataSets attribute)@\spxentry{indices\_of\_features}\spxextra{ucf.TrainingDataSets attribute}|hyperpage}{9}
+\indexentry{indices\_of\_targets (ucf.TrainingDataSets attribute)@\spxentry{indices\_of\_targets}\spxextra{ucf.TrainingDataSets attribute}|hyperpage}{9}
+\indexentry{train\_features (ucf.TrainingDataSets attribute)@\spxentry{train\_features}\spxextra{ucf.TrainingDataSets attribute}|hyperpage}{9}
+\indexentry{train\_targets (ucf.TrainingDataSets attribute)@\spxentry{train\_targets}\spxextra{ucf.TrainingDataSets attribute}|hyperpage}{9}
 \indexentry{validation\_features (ucf.TrainingDataSets attribute)@\spxentry{validation\_features}\spxextra{ucf.TrainingDataSets attribute}|hyperpage}{10}
 \indexentry{validation\_targets (ucf.TrainingDataSets attribute)@\spxentry{validation\_targets}\spxextra{ucf.TrainingDataSets attribute}|hyperpage}{10}
 \indexentry{test\_features (ucf.TrainingDataSets attribute)@\spxentry{test\_features}\spxextra{ucf.TrainingDataSets attribute}|hyperpage}{10}
@@ -25,9 +25,9 @@
 \indexentry{scaled\_train\_features (ucf.TrainingDataSets attribute)@\spxentry{scaled\_train\_features}\spxextra{ucf.TrainingDataSets attribute}|hyperpage}{10}
 \indexentry{scaled\_validation\_features (ucf.TrainingDataSets attribute)@\spxentry{scaled\_validation\_features}\spxextra{ucf.TrainingDataSets attribute}|hyperpage}{10}
 \indexentry{scaled\_test\_features (ucf.TrainingDataSets attribute)@\spxentry{scaled\_test\_features}\spxextra{ucf.TrainingDataSets attribute}|hyperpage}{10}
-\indexentry{compute\_mean\_and\_standard\_deviation() (ucf.TrainingDataSets method)@\spxentry{compute\_mean\_and\_standard\_deviation()}\spxextra{ucf.TrainingDataSets method}|hyperpage}{11}
+\indexentry{compute\_mean\_and\_standard\_deviation() (ucf.TrainingDataSets method)@\spxentry{compute\_mean\_and\_standard\_deviation()}\spxextra{ucf.TrainingDataSets method}|hyperpage}{10}
 \indexentry{get\_scaled\_features() (ucf.TrainingDataSets method)@\spxentry{get\_scaled\_features()}\spxextra{ucf.TrainingDataSets method}|hyperpage}{11}
 \indexentry{get\_targets() (ucf.TrainingDataSets method)@\spxentry{get\_targets()}\spxextra{ucf.TrainingDataSets method}|hyperpage}{11}
 \indexentry{make\_training\_data() (ucf.TrainingDataSets method)@\spxentry{make\_training\_data()}\spxextra{ucf.TrainingDataSets method}|hyperpage}{11}
-\indexentry{scale\_features() (ucf.TrainingDataSets method)@\spxentry{scale\_features()}\spxextra{ucf.TrainingDataSets method}|hyperpage}{12}
-\indexentry{shuffle() (ucf.TrainingDataSets method)@\spxentry{shuffle()}\spxextra{ucf.TrainingDataSets method}|hyperpage}{12}
+\indexentry{scale\_features() (ucf.TrainingDataSets method)@\spxentry{scale\_features()}\spxextra{ucf.TrainingDataSets method}|hyperpage}{11}
+\indexentry{shuffle() (ucf.TrainingDataSets method)@\spxentry{shuffle()}\spxextra{ucf.TrainingDataSets method}|hyperpage}{11}
