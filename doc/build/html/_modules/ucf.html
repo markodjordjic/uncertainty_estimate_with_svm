@@ -198,7 +198,8 @@
 <span class="sd">    )</span>
 
 <span class="sd">.. raw:: latex</span>
-<span class="sd">   \pagebreak</span>
+
+<span class="sd">    \\newpage</span>
 
 <span class="sd">Below we can take a look at the solution produced by the single SVM.</span>
 
@@ -211,21 +212,24 @@
 <span class="sd">    :align: center</span>
 
 <span class="sd">.. raw:: latex</span>
-<span class="sd">   \pagebreak</span>
+
+<span class="sd">    \\newpage</span>
 
 <span class="sd">SVC ensemble produces different solution, as we can see from the image</span>
 <span class="sd">below.</span>
 
-<span class="sd">.. figure::  010_ensemble_svc_prediction.jpg</span>
+<span class="sd">.. figure::  010_ensemble_svm_prediction.jpg</span>
 <span class="sd">    :align:   center</span>
 
 <span class="sd">Also distribution of classes across the prediction is different.</span>
 
-<span class="sd">.. figure::  010_ensemble_svc_cn_matrix.jpg</span>
+<span class="sd">.. figure::  010_ensemble_svm_cn_matrix.jpg</span>
 <span class="sd">    :align:   center</span>
 
 <span class="sd">.. raw:: latex</span>
-<span class="sd">   \pagebreak</span>
+
+<span class="sd">    \\newpage</span>
+
 
 <span class="sd">Finally we can take a look a te comparison between a single SVC and an</span>
 <span class="sd">ensemble of SVCs.</span>
@@ -793,7 +797,7 @@
     <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Times New Roman&#39;</span>
     <span class="c1"># Set font family.</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;serif&#39;</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">6.37</span><span class="p">,</span> <span class="mf">4.845</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">9.69</span><span class="p">,</span> <span class="mf">6.27</span><span class="p">]</span>
     <span class="n">figure</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">):</span>
         <span class="n">mask</span> <span class="o">=</span> <span class="n">label</span> <span class="o">==</span> <span class="n">labels</span>
@@ -968,7 +972,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Times New Roman&#39;</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;serif&#39;</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">6.37</span><span class="p">,</span> <span class="mf">4.845</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">9.69</span><span class="p">,</span> <span class="mf">6.27</span><span class="p">]</span>
     <span class="n">figure</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
     <span class="n">grid</span> <span class="o">=</span> <span class="n">grid_spec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
     <span class="c1"># Plot reference classification.</span>
@@ -1044,7 +1048,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Times New Roman&#39;</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;serif&#39;</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">6.37</span><span class="p">,</span> <span class="mf">4.845</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">9.69</span><span class="p">,</span> <span class="mf">6.27</span><span class="p">]</span>
     <span class="n">figure</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
     <span class="n">grid</span> <span class="o">=</span> <span class="n">grid_spec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">solutions</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="c1"># Plot reference classification.</span>
@@ -1120,7 +1124,7 @@
     <span class="n">number_of_classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">class_membership</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Times New Roman&#39;</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;serif&#39;</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">6.37</span><span class="p">,</span> <span class="mf">4.845</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">9.69</span><span class="p">,</span> <span class="mf">6.27</span><span class="p">]</span>
     <span class="n">position</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">product</span><span class="p">(</span>
         <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">number_of_classes</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span>
         <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">number_of_classes</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>

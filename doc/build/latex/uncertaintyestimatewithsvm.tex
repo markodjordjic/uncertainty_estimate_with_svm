@@ -74,7 +74,7 @@
 
 
 \title{Uncertainty Estimate with SVM}
-\date{Nov 30, 2019}
+\date{Dec 01, 2019}
 \release{0.0.1}
 \author{Marko Djordjic}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -132,6 +132,8 @@ model, a variational inference approach was utilized.
 \PYG{g+go}{    )}
 \end{sphinxVerbatim}
 
+\newpage
+
 Below we can take a look at the solution produced by the single SVM.
 
 \begin{figure}[H]
@@ -148,13 +150,15 @@ And here is the confusion matrix for the single SVM.
 \noindent\sphinxincludegraphics{{010_single_svc_cn_matrix}.jpg}
 \end{figure}
 
+\newpage
+
 SVC ensemble produces different solution, as we can see from the image
 below.
 
 \begin{figure}[H]
 \centering
 
-\noindent\sphinxincludegraphics{{010_ensemble_svc_prediction}.jpg}
+\noindent\sphinxincludegraphics{{010_ensemble_svm_prediction}.jpg}
 \end{figure}
 
 Also distribution of classes across the prediction is different.
@@ -162,8 +166,10 @@ Also distribution of classes across the prediction is different.
 \begin{figure}[H]
 \centering
 
-\noindent\sphinxincludegraphics{{010_ensemble_svc_cn_matrix}.jpg}
+\noindent\sphinxincludegraphics{{010_ensemble_svm_cn_matrix}.jpg}
 \end{figure}
+
+\newpage
 
 Finally we can take a look a te comparison between a single SVC and an
 ensemble of SVCs.

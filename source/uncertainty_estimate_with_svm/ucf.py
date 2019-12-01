@@ -33,7 +33,8 @@ Examples
     )
 
 .. raw:: latex
-   \pagebreak
+
+    \\newpage
 
 Below we can take a look at the solution produced by the single SVM.
 
@@ -46,21 +47,24 @@ And here is the confusion matrix for the single SVM.
     :align: center
 
 .. raw:: latex
-   \pagebreak
+
+    \\newpage
 
 SVC ensemble produces different solution, as we can see from the image
 below.
 
-.. figure::  010_ensemble_svc_prediction.jpg
+.. figure::  010_ensemble_svm_prediction.jpg
     :align:   center
 
 Also distribution of classes across the prediction is different.
 
-.. figure::  010_ensemble_svc_cn_matrix.jpg
+.. figure::  010_ensemble_svm_cn_matrix.jpg
     :align:   center
 
 .. raw:: latex
-   \pagebreak
+
+    \\newpage
+
 
 Finally we can take a look a te comparison between a single SVC and an
 ensemble of SVCs.
@@ -628,7 +632,7 @@ def scatter_plot_with_groups(coordinates,
     plt.rcParams['font.serif'] = 'Times New Roman'
     # Set font family.
     plt.rcParams['font.family'] = 'serif'
-    plt.rcParams['figure.figsize'] = [5.87, 4.845]
+    plt.rcParams['figure.figsize'] = [9.69, 6.27]
     figure, axis = plt.subplots()
     for label in np.unique(labels).astype(int):
         mask = label == labels
@@ -803,7 +807,7 @@ def plot_solution(coordinates,
     """
     plt.rcParams['font.serif'] = 'Times New Roman'
     plt.rcParams['font.family'] = 'serif'
-    plt.rcParams['figure.figsize'] = [5.87, 4.845]
+    plt.rcParams['figure.figsize'] = [9.69, 6.27]
     figure = plt.figure()
     grid = grid_spec.GridSpec(1, 3)
     # Plot reference classification.
@@ -879,7 +883,7 @@ def plot_comparison(coordinates,
     """
     plt.rcParams['font.serif'] = 'Times New Roman'
     plt.rcParams['font.family'] = 'serif'
-    plt.rcParams['figure.figsize'] = [5.87, 4.845]
+    plt.rcParams['figure.figsize'] = [9.69, 6.27]
     figure = plt.figure()
     grid = grid_spec.GridSpec(1, len(solutions)+1)
     # Plot reference classification.
@@ -955,7 +959,7 @@ def plot_individual_classes(coordinates,
     number_of_classes = np.unique(class_membership)
     plt.rcParams['font.serif'] = 'Times New Roman'
     plt.rcParams['font.family'] = 'serif'
-    plt.rcParams['figure.figsize'] = [5.87, 4.845]
+    plt.rcParams['figure.figsize'] = [9.69, 6.27]
     position = list(product(
         range(0, int(len(number_of_classes)/2)),
         range(0, int(len(number_of_classes)/2))

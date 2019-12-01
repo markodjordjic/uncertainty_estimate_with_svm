@@ -294,3 +294,5 @@ ue_svm.plot_comparison(
 )
 # w=6.27
 # h=4.845
+w=9.69
+h=6.27
