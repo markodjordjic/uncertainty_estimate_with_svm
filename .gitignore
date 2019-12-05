@@ -2,6 +2,8 @@ data
 output
 doc/source
 doc/build/doctrees
+doc/build/html
+doc/build/latex
 make.bat
 Makefile
 source/build
