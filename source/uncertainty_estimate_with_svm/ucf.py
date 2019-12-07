@@ -138,7 +138,8 @@ def get_all_sub_folders_within_folder(path):
     Returns
     -------
     list
-        Names of all sub-folder within folder designated in `path` parameter.
+        Names of all sub-folder within folder designated in `path`
+        parameter.
 
     """
     return [
@@ -152,8 +153,6 @@ def get_data(folder_wh_data):
     Build an inventory of data sets out of individual files within a
     folder.
 
-    Function omits files which are having `txt` inside their name.
-
     Parameters
     ----------
     folder_wh_data : str
@@ -164,6 +163,10 @@ def get_data(folder_wh_data):
     list
         All the data sets generated from individual data
         files.
+
+    Notes
+    -----
+    Function omits files which are having `txt` inside their name.
 
     """
     # Make inventory of sub folder names.
@@ -212,7 +215,7 @@ class TrainingDataSets:
     train_features : numpy.array
         Unscaled training features.
     train_targets : numpy.array
-        Training targets. Shuffled if desired.
+        Training targets.
     validation_features : numpy.array
         Validation features
     validation_targets : numpy.array
@@ -224,10 +227,11 @@ class TrainingDataSets:
     scaled_train_features : numpy.array
         Train features scaled to mean zero and unit variance. Shuffled
         if desired.
-    scaled_validation_features : Numpy Array
+    scaled_validation_features : numpy.array
         Validation features scaled to mean zero and unit variance.
-    scaled_test_features : Numpy Array
+    scaled_test_features : numpy.array
         Test features scaled to mean zero and unit variance.
+
     """
     def __init__(self, features_and_targets_data_set):
         self.original_data = features_and_targets_data_set
@@ -268,7 +272,7 @@ class TrainingDataSets:
 
     def make_training_data(self, train_size, validation_size):
         """
-        Make features and targets
+        Partition the data into training, validation, and testing sets.
 
         Parameters
         ----------
@@ -305,7 +309,7 @@ class TrainingDataSets:
     def compute_mean_and_standard_deviation(self):
         """
         Computation of mean and standard deviation of features
-        in the training data set.
+        in the training data set
 
         Returns
         -------
@@ -394,11 +398,6 @@ def reduce_set_to_equal_distribution_of_classes(features_for_training,
     Reduces the training set to the size N = K x size of the
     least frequent class
 
-    Firstly, the count of least frequent class is computed. Than a pair
-    with features and targets is constructed consisting of samples of
-    all classes. Therefore, generated pair is balanced in regards to
-    distribution of classes.
-
     Parameters
     ----------
     features_for_training : numpy.array
@@ -408,9 +407,8 @@ def reduce_set_to_equal_distribution_of_classes(features_for_training,
 
     Returns
     -------
-    numpy.array  :
-        Two separate numpy.arrays Features and targets reduced to the size of
-        equal to the number of samples belonging to the leas frequent class.
+    numpy.array
+        Two separate numpy.arrays for features and targets.
 
     """
     # Compute count of all classes.
@@ -422,10 +420,9 @@ def reduce_set_to_equal_distribution_of_classes(features_for_training,
     inventory_of_targets = []
 
     for label in np.unique(targets_for_training.astype(int)):
-        subset_features = \
-            features_for_training[
-                [item == label for item in targets_for_training]
-            ]
+        subset_features = features_for_training[
+            [item == label for item in targets_for_training]
+        ]
         subset_features = subset_features[
             np.random.permutation(len(subset_features))
         ]
@@ -452,7 +449,7 @@ def generate_ensemble(number_of_estimators,
     Parameters
     ----------
     number_of_estimators : int
-        How much estimators will be in the ensemble.
+        How many estimators will be in the ensemble.
     features_for_training : numpy.array
         Features which will be utilized for training of individual
         estimators.
@@ -462,7 +459,7 @@ def generate_ensemble(number_of_estimators,
 
     Returns
     -------
-    List
+    list
         A collection of SVCs trained on different sections of features
         and targets pairs.
 
@@ -618,7 +615,7 @@ def scatter_plot_with_groups(coordinates,
     legend_descriptions : dict
         Labels to be utilized for description in plot legend.
     save_plot : bool
-        Indication whether to save a plot. Defaults to none
+        Indication whether to save a plot. Defaults to none.
     path : str
         Path including the file name where to save the plot.
 
@@ -667,12 +664,14 @@ def make_confusion_matrix(reference, output, prediction_labels):
 
     Returns
     -------
-    Confusion matrix as the pandas.DataFrame.
+    pandas.DataFrame
+         Confuision matrix (see Notes).
 
     Notes
     -----
     Reference group is placed in row. Proportion of each prediction
-    within the reference group is computed across columns (horizontally).
+    within the reference group is computed across columns
+    (horizontally).
 
     """
     # Counts.
@@ -930,8 +929,8 @@ def plot_individual_classes(coordinates,
     Plot class membership in individual plot
 
     Point within scatter plots indicating class membership with multiple
-    classes can often overlap, therefore debilitating correct analysis. This
-    function plots all classes independently.
+    classes can often overlap, therefore debilitating correct analysis.
+    This function plots all classes independently.
 
     Parameters
     ----------

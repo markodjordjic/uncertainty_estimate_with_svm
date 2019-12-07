@@ -1,9 +1,10 @@
 data
 output
 doc/source
-doc/build/doctrees
-doc/build/html
-doc/build/latex
+doc/build/*
+!doc/build/latex
+doc/build/latex/*
+!doc/build/latex/*.pdf
 make.bat
 Makefile
 source/build
