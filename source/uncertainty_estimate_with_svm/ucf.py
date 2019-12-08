@@ -18,19 +18,38 @@ model, a variational inference approach was utilized.
 
 Examples
 --------
->>> import uncertainty_estimate_with_svm.ucf as ue_svm
->>> # Get the training set with the equal number of classes.
->>> reduced_set = ue_svm.reduce_set_to_equal_distribution_of_classes(
-        features_for_training=features, targets_for_training=targets
-        )
->>> ensemble = ue_svm.generate_ensemble(number_of_estimators=30,
-        features_for_training=reduced_set[, 0:9],
-        targets_for_training=reduced_set[, 10]
-        )
->>> predictions, uncertainty = ue_svm.generate_predictions(
-        inventory_of_estimators=ensemble,
-        features=x_test
-    )
+>>> import pandas as pd
+... import numpy as np
+... from sklearn.decomposition import PCA
+... from sklearn.svm import SVC
+... import uncertainty_estimate_with_svm.ucf as ue_svm
+
+>>> # Generate balanced set.
+... balanced_x_train, balanced_y_train = \
+... ue_svm.reduce_set_to_equal_distribution_of_classes(
+...    features_for_training=x_train,
+...     targets_for_training=y_train
+... )
+
+>>> # Fit ensemble.
+... ensembles = ue_svm.generate_ensemble(
+...     number_of_estimators=30,
+...     features_for_training=balanced_x_train,
+...     targets_for_training=balanced_y_train
+... )
+
+>>> # Get ensemble predictions.
+... ensemble_predictions, ensemble_uncertainty = ue_svm.generate_predictions(
+...     inventory_of_estimators=ensembles,
+...     features=x_test
+... )
+
+>>> # Compute ensemble accuracy.
+... ensemble_accuracy = (
+... np.sum((y_test.astype(int) == ensemble_predictions).astype(int))
+...     / len(ensemble_predictions)
+... )
+... print(ensemble_accuracy)
 
 .. raw:: latex
 
@@ -96,7 +115,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as grid_spec
-from sklearn.decomposition import PCA
 from sklearn.svm import SVC
 
 
@@ -872,6 +890,10 @@ def plot_comparison(coordinates,
         Description of each label.
     coloration : dict
         Vector with coloration.
+    save : bool
+        Option to save the plot.
+    path : str
+        Path where to save the plot.
 
     Returns
     -------
