@@ -1,20 +1,26 @@
 """
-Uncertain estimate with SVM is a package which provides a functional
-example on how to train a SVC which outputs an uncertainty estimate
-alongside prediction of class membership.
+As noted by Murphy [1]_ Support Vector Machines (SVMs) are not
+probabilistic models. This package attempts to provide a solution in order to
+develop SVM which can output the uncertainty estimate alongside prediction, and
+therefore, at least to some extent, provide introduce benefits of probabilistic
+Machine Learning to otherwise non-probabilistic method.
 
-As noted by Murphy (2012, p. 497) are not probabilistic models. The
+In this specific case, a classification task has been selected to be solved
+with a SVM, even though the same methodology can be extended to solving
+regression problems as well. For further details regarding the data set
+describing the classification task available at Torres, Ranasinghe,
+Sample [2]_. One characteristic of this data set deserves to be noted;
+there is a heavy-imbalance across classes with one of the classes
+accounting for nearly 90% of the data-set.
 
-In this specific case, a classification task is solved with a SVC. The
-same methodology can be extended to solving regression problems as well.
-In the case of solving a classification task, a specific approach towards
-building a training set has been applied. Each of the estimators is trained
-on a subset of training data set. This subset is in itself designed to
-contain all classes in equal proportions. Therefore the size of the subset
-is determined by the size of least frequent class and the number of classes.
-
-In order to obtain uncertainty estimate from an otherwise non-probabilistic
-model, a variational inference approach was utilized.
+The strategy to include uncertainty estimates for SVM is based on the
+approach defined by Osband, Blundell, Pritzel [3]_. In addition
+to the above mentioned approach which is based on boot-strapping, one more
+innovation is introduced. Ensemble of SVMs which generates prediction and
+uncertainty estimates, is trained on a collection of data sets which are
+constructed in such way that all classes are included in exactly same
+proportion. Further details regarding the influence this approach has
+on the decision boundary is explained in subsequent pages.
 
 Examples
 --------
@@ -54,12 +60,12 @@ Examples
 
     \\newpage
 
-Below we can take a look at the solution produced by the single SVM.
+Below we can take a look at the solution produced by the single SVC.
 
 .. figure:: 010_single_svc_predictions.jpg
     :align: center
 
-And here is the confusion matrix for the single SVM.
+And here is the confusion matrix for the single SVC.
 
 .. figure:: 010_single_svc_cn_matrix.jpg
     :align: center
@@ -95,14 +101,19 @@ of training of multiple SVCs on a balanced set, and some of the bias
 of the model trained on the imbalanced set has be removed.
 However, even though this allows for training of SVMs on larger training
 sets, there are two relative problems with this solution: (a) minor
-but still present loss in accuracy, and (b) slower execution
+but still present loss in accuracy, and (b) longer execution time
 of the ensemble.
 
 References
 ----------
-
-Notes
------
+.. [1] Murphy, K. (2012). Machine Learning A Probabilistic Perspective,
+   p. 497
+.. [2] Shinmoto Torres, R. L., Ranasinghe, D. C., Shi, Q., Sample, A. P.
+   (2013, April). Sensor enabled wearable RFID technology for mitigating
+   the risk of falls near beds. In 2013 IEEE International Conference on
+   RFID (pp. 191-198). IEEE.
+.. [3] Osband, I., Blundell, C., Pritzel, A. Van Roy1, B. (2016). Deep
+   Exploration via Bootstrapped DQN.
 
 
 """
