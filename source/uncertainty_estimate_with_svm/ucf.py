@@ -25,7 +25,6 @@ Examples
 ... import uncertainty_estimate_with_svm.ucf as ue_svm
 
 >>> # Generate balanced set.
-... balanced_x_train, balanced_y_train = \
 ... ue_svm.reduce_set_to_equal_distribution_of_classes(
 ...    features_for_training=x_train,
 ...     targets_for_training=y_train
