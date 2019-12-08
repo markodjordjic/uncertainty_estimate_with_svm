@@ -2,12 +2,12 @@
 As noted by Murphy [1]_ Support Vector Machines (SVMs) are not
 probabilistic models. This package attempts to provide a solution in order to
 develop SVM which can output the uncertainty estimate alongside prediction, and
-therefore, at least to some extent, provide introduce benefits of probabilistic
+therefore, at least to some extent,  introduce benefits of probabilistic
 Machine Learning to otherwise non-probabilistic method.
 
 In this specific case, a classification task has been selected to be solved
 with a SVM, even though the same methodology can be extended to solving
-regression problems as well. For further details regarding the data set
+regression problems. For further details regarding the data set
 describing the classification task available at Torres, Ranasinghe,
 Sample [2]_. One characteristic of this data set deserves to be noted;
 there is a heavy-imbalance across classes with one of the classes
@@ -114,7 +114,6 @@ References
    RFID (pp. 191-198). IEEE.
 .. [3] Osband, I., Blundell, C., Pritzel, A. Van Roy1, B. (2016). Deep
    Exploration via Bootstrapped DQN.
-
 
 """
 
