@@ -1,3 +1,6 @@
 # uncertainty_estimate_with_svm
-[<img src="https://img.youtube.com/vi/k6xZfbA5sXc/maxresdefault.jpg" width="50%">](https://www.youtube.com/watch?v=k6xZfbA5sXc)
-
+<iframe width="560" height="315"
+src="https://youtu.be/k6xZfbA5sXc" 
+frameborder="0" 
+allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+allowfullscreen></iframe>
